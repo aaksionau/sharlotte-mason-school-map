@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SharlotteMason.Entities;
 
@@ -8,5 +9,6 @@ namespace SharlotteMason.Services
         Task<HomeSchool> RetrieveAsync(string category, string id);
         Task<HomeSchool> InsertOrMergeAsync(HomeSchool entity);
         Task<HomeSchool> DeleteAsync(HomeSchool entity);
+        Task<List<HomeSchool>> GetListAsync();
     }
 }

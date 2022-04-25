@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
-using SharlotteMason.Entities;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.Configuration;
+using SharlotteMason.Entities;
 
 namespace SharlotteMason.Services;
 
@@ -27,8 +30,16 @@ public class TableStorageService : ITableStorageService {
         {
             var deleteOperation = TableOperation.Delete(entity);
             return await ExecuteTableOperation(deleteOperation) as HomeSchool;
-        } 
-        private async Task<object> ExecuteTableOperation(TableOperation tableOperation)
+        }
+
+    public async Task<List<HomeSchool>> GetListAsync()
+    {
+        TableQuery<HomeSchool> query = new TableQuery<HomeSchool>();
+        var table = await GetCloudTable();
+        var result = (table.ExecuteQuery(query)).ToList() as List<HomeSchool>;
+        return result;
+    }
+    private async Task<object> ExecuteTableOperation(TableOperation tableOperation)
         {
             var table = await GetCloudTable();
             var tableResult = await table.ExecuteAsync(tableOperation);

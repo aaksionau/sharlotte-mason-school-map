@@ -2,13 +2,14 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using SharlotteMason.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SharlotteMason.Dtos;
+using SharlotteMason.Entities;
 using SharlotteMason.Helpers;
 using SharlotteMason.Services;
 
@@ -29,18 +30,17 @@ namespace SharlotteMason.Functions
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            ValidationWrapper<HomeSchool> httpResponseBody = await req.GetBodyAsync<HomeSchool>();
+            ValidationWrapper<HomeSchoolDto> httpResponseBody = await req.GetBodyAsync<HomeSchoolDto>();
 
-            if(!httpResponseBody.IsValid)
-                return new BadRequestObjectResult($"Invalid input: {string.Join(",", httpResponseBody.ValidationResults.Select(s=>s.ErrorMessage).ToArray())}");
+            if (!httpResponseBody.IsValid)
+                return new BadRequestObjectResult($"Invalid input: {string.Join(",", httpResponseBody.ValidationResults.Select(s => s.ErrorMessage).ToArray())}");
 
             var data = httpResponseBody.Value;
 
-            var entity = new HomeSchool(data.FamilyName, data.CityName, data.Email) { 
-                Children = data.Children,
-                InterstedTopics = data.InterstedTopics,
-                FirstName = data.FirstName
-            };
+            var entity = new HomeSchool(data);
+            entity.AddChildren(data.Children);
+            entity.InterstedTopics = data.InterstedTopics;
+            entity.FirstName = data.FirstName;
             await tableStorageService.InsertOrMergeAsync(entity);
 
             return new OkObjectResult("Ok");
