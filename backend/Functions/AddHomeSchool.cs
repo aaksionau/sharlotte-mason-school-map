@@ -18,10 +18,14 @@ namespace SharlotteMason.Functions
     public class AddHomeSchool
     {
         private readonly ITableStorageService tableStorageService;
+        private readonly IGoogleGeoLocationService googleGeoLocationService;
 
-        public AddHomeSchool(ITableStorageService tableStorageService)
+        public AddHomeSchool(
+            ITableStorageService tableStorageService,
+            IGoogleGeoLocationService googleGeoLocationService)
         {
             this.tableStorageService = tableStorageService;
+            this.googleGeoLocationService = googleGeoLocationService ?? throw new ArgumentNullException(nameof(googleGeoLocationService));
         }
         [FunctionName("AddHomeSchool")]
         public async Task<IActionResult> Run(
@@ -41,6 +45,10 @@ namespace SharlotteMason.Functions
             entity.AddChildren(data.Children);
             entity.InterstedTopics = data.InterstedTopics;
             entity.FirstName = data.FirstName;
+
+            var coordinates = this.googleGeoLocationService.GetCoordinates(data);
+            entity.SetCoordinates(coordinates);
+
             await tableStorageService.InsertOrMergeAsync(entity);
 
             return new OkObjectResult("Ok");

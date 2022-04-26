@@ -14,8 +14,16 @@ namespace SharlotteMason.Dtos
         public string Email { get; set; }
         [Required]
         public string CityName { get; set; }
+        [Required]
+        public string State { get; set; }
+        
+        
         public List<ChildDto> Children { get; set; }
         public string InterstedTopics { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        
+        
         
     }
 }

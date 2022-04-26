@@ -22,6 +22,7 @@ namespace SharlotteMason.Entities
         public string FamilyName { get; set; }
         public string Email { get; set; }
         public string CityName { get; set; }
+        public string State { get; set; }
         public List<ChildDto> GetChildren()
         {
             return JsonConvert.DeserializeObject<List<ChildDto>>(ChildrenJSON);
@@ -30,6 +31,12 @@ namespace SharlotteMason.Entities
         {
             if (children != null && children.Count > 0)
                 ChildrenJSON = JsonConvert.SerializeObject(children);
+        }
+
+        public void SetCoordinates(CoordinatesDto coordinates)
+        {
+            Longitude = coordinates.Longitude;
+            Latitude = coordinates.Latitude;
         }
 
         public HomeSchoolDto GetDto()
@@ -41,11 +48,15 @@ namespace SharlotteMason.Entities
                 Email = this.Email,
                 CityName = this.CityName,
                 InterstedTopics = this.InterstedTopics,
-                Children = this.GetChildren()
+                Children = this.GetChildren(),
+                Latitude = this.Latitude,
+                Longitude = this.Longitude
             };
         }
         public string ChildrenJSON { get; set; }
         public string InterstedTopics { get; set; }
         public DateTimeOffset Added { get; set; } = DateTimeOffset.Now;
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 }

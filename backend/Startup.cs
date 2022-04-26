@@ -10,6 +10,8 @@ namespace SharlotteMason
         public override void Configure(IFunctionsHostBuilder builder)
         {
             builder.Services.AddScoped<ITableStorageService, TableStorageService>();
+            builder.Services.AddScoped<IGoogleGeoLocationService, GoogleGeoLocationService>();
+            builder.Services.AddLogging();
         }
     }
 }
