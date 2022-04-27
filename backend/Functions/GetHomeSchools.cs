@@ -8,6 +8,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using SharlotteMason.Services;
 
 namespace SharlotteMason.Functions
@@ -26,7 +27,9 @@ namespace SharlotteMason.Functions
             ILogger log)
         {
             var schools = await tableStorageService.GetListAsync();
-            return new OkObjectResult(JsonConvert.SerializeObject(schools.Select(s=>s.GetDto())));
+            var serializerSettings = new JsonSerializerSettings();
+            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); 
+            return new OkObjectResult(JsonConvert.SerializeObject(schools.Select(s=>s.GetDto()), serializerSettings));
         }
     }
 }
