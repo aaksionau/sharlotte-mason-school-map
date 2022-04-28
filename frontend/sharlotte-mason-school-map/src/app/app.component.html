@@ -1,7 +1,7 @@
 <google-map height="500px" width="50%" [zoom]="zoom" [center]="center" [options]="options">
-  <map-marker *ngFor="let marker of markers" [position]="marker.position" [title]="marker.text" [label]="marker.label"
-    [options]="marker.options">
+  <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [icon]="marker.icon"
+    [options]="marker.options" (mapClick)="seeDetails(marker.cityName)">
   </map-marker>
 </google-map>
-
+<app-homeschool-list cityName="{{cityName}}"></app-homeschool-list>
 <router-outlet></router-outlet>

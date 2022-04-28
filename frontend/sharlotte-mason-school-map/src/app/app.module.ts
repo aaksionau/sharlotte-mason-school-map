@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule } from '@angular/common';
+import { HomeschoolListComponent } from './homeschool-list/homeschool-list.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeschoolListComponent
   ],
   imports: [
     BrowserModule,
