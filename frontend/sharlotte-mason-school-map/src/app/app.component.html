@@ -1,7 +1,16 @@
-<google-map height="500px" width="50%" [zoom]="zoom" [center]="center" [options]="options">
-  <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [icon]="marker.icon"
-    [options]="marker.options" (mapClick)="seeDetails(marker.cityName)">
-  </map-marker>
-</google-map>
-<app-homeschool-list cityName="{{cityName}}"></app-homeschool-list>
+<div class="section"></div>
+<div class="columns">
+  <div class="column is-three-quarters">
+    <google-map width="100%" [zoom]="zoom" [center]="center" [options]="options">
+      <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [icon]="marker.icon"
+        [options]="marker.options" (mapClick)="seeDetails(marker.cityName)">
+      </map-marker>
+    </google-map>
+  </div>
+  <div class="column">
+    <app-homeschool-list cityName="{{cityName}}"></app-homeschool-list>
+    <app-add-school></app-add-school>
+  </div>
+</div>
+<div class="section"></div>
 <router-outlet></router-outlet>

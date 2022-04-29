@@ -11,7 +11,7 @@ export class MarkerGroup {
         return  {
             path: google.maps.SymbolPath.CIRCLE,
             fillOpacity: 1,
-            fillColor: '#fff',
+            fillColor: '#fadb07',
             strokeOpacity: 1,
             strokeWeight: 1,
             strokeColor: '#333',

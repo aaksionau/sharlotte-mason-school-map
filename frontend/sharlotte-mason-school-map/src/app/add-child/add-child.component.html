@@ -1,0 +1,20 @@
+<div class="columns">
+  <div class="column is-half">
+    <div class="field">
+      <div class="control">
+        <input class="input is-small" id="cityName" [(ngModel)]="child.yearOfBirth" placeholder="year of birth">
+      </div>
+    </div>
+  </div>
+  <div class="column is-one-quarter">
+      <div class="select is-small">
+        <select [(ngModel)]="child.gender" id="gender">
+            <option value="0">boy</option>
+            <option value="1">girl</option>
+          </select>
+      </div>
+  </div>
+  <div class="column is-one-quarter">
+    <button class="button is-black is-small is-outlined">Add Child</button>
+</div>
+</div>

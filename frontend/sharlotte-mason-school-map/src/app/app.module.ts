@@ -7,18 +7,24 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule } from '@angular/common';
 import { HomeschoolListComponent } from './homeschool-list/homeschool-list.component';
+import { AddSchoolComponent } from './add-school/add-school.component';
+import { FormsModule } from '@angular/forms';
+import { AddChildComponent } from './add-child/add-child.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeschoolListComponent
+    HomeschoolListComponent,
+    AddSchoolComponent,
+    AddChildComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

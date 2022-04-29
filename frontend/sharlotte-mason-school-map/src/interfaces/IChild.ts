@@ -1,4 +1,4 @@
 export interface IChild { 
     yearOfBirth: number;
-    gender: string;
+    gender: number;
 }
