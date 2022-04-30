@@ -17,12 +17,25 @@ namespace SharlotteMason.Entities
             FamilyName = dto.FamilyName;
             CityName = dto.CityName;
             Email = dto.Email;
+
+            InterestCMBookStudy = dto.InterestCMBookStudy;
+            InterestFriendship = dto.InterestFriendship;
+            InterestMentoring = dto.InterestMentoring;
+            InterestNatureWalks = dto.InterestNatureWalks;
+            InterestNatureWalks = dto.InterestNatureWalks;
         }
         public string FirstName { get; set; }
         public string FamilyName { get; set; }
         public string Email { get; set; }
         public string CityName { get; set; }
         public string State { get; set; }
+        public string InterestCMBookStudy { get; set; }
+        public string InterestNatureWalks { get; set; }
+        public string InterestCoop { get; set; }
+        public string InterestMentoring { get; set; }
+        public string InterestFriendship { get; set; }
+        
+        
         public List<ChildDto> GetChildren()
         {
             return JsonConvert.DeserializeObject<List<ChildDto>>(ChildrenJSON);
@@ -47,14 +60,17 @@ namespace SharlotteMason.Entities
                 FamilyName = this.FamilyName,
                 Email = this.Email,
                 CityName = this.CityName,
-                InterstedTopics = this.InterstedTopics,
                 Children = this.GetChildren(),
                 Latitude = this.Latitude,
-                Longitude = this.Longitude
+                Longitude = this.Longitude,
+                InterestCMBookStudy = this.InterestCMBookStudy,
+                InterestCoop = this.InterestCoop,
+                InterestNatureWalks = this.InterestNatureWalks,
+                InterestMentoring = this.InterestMentoring,
+                InterestFriendship = this.InterestFriendship
             };
         }
         public string ChildrenJSON { get; set; }
-        public string InterstedTopics { get; set; }
         public DateTimeOffset Added { get; set; } = DateTimeOffset.Now;
         public double Longitude { get; set; }
         public double Latitude { get; set; }

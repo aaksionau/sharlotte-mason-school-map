@@ -11,5 +11,10 @@ export interface IHomeSchool {
     interestedTopics: string;
     added: Date;
     longitude: number;
-    latitude: number
+    latitude: number,
+    interestCMBookStudy: string,
+    interestCoop: string,
+    interestNatureWalks: string,
+    interestMentoring: string,
+    interestFriendship: string
 }

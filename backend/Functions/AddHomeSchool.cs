@@ -43,8 +43,6 @@ namespace SharlotteMason.Functions
 
             var entity = new HomeSchool(data);
             entity.AddChildren(data.Children);
-            entity.InterstedTopics = data.InterstedTopics;
-            entity.FirstName = data.FirstName;
 
             var coordinates = this.googleGeoLocationService.GetCoordinates(data);
             entity.SetCoordinates(coordinates);

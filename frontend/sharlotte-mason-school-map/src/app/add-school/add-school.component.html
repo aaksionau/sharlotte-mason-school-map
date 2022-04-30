@@ -1,51 +1,102 @@
-<div class="card">
-  <header class="card-header">
-    <div class="card-header-title">
-      Add Your HomeSchool
-    </div>
-  </header>
+<form name="frm">
+  <div class="card">
+    <header class="card-header">
+      <div class="card-header-title">
+        Add Your HomeSchool
+      </div>
+      <button class="button mt-1 is-success" (click)="toggleForm()"><i class="fa-solid" [ngClass]="formIsVisible? 'fa-minus':'fa-plus'"></i></button>
+    </header>
+    <div class="content" *ngIf="formIsVisible">
+      <div class="card-content">
+        <div class="content">
 
-  <div class="card-content">
-    <div class="content">
+          <article class="message is-danger is-small" *ngIf="errors.length > 0">
+            <div class="message-header">
+              <p class="mt-2">Danger</p>
+              <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+              <ul class="mb-0 mt-0">
+                <li *ngFor="let error of errors" class="content is-small mb-0 mt-0">{{error}}</li>
+              </ul>
+            </div>
+          </article>
 
-      <div class="field">
-        <div class="control">
-          <input class="input is-small" id="familyName" [(ngModel)]="homeschool.familyName" placeholder="family name">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <input class="input is-small" id="firstName" [(ngModel)]="homeschool.firstName"
-            placeholder="first name (optional)">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <input class="input is-small" id="email" [(ngModel)]="homeschool.email" placeholder="email">
-        </div>
-      </div>
-      <span class="is-size-7">(if you don’t want to provide city for some reason, type Minneapolis)</span>
-      <div class="columns">
-        <div class="column">
           <div class="field">
             <div class="control">
-              <input class="input is-small" id="cityName" [(ngModel)]="homeschool.cityName" placeholder="city name">
+              <input class="input is-small" name="familyName" id="familyName" required
+                [(ngModel)]="homeschool.familyName" placeholder="family name">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="firstName" [(ngModel)]="homeschool.firstName"
+                placeholder="first name (optional)">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="email" type="email" required [(ngModel)]="homeschool.email"
+                placeholder="email">
+            </div>
+          </div>
+          <h5 class="subtitle is-6 mt-4 mb-0">Location:</h5>
+          <span class="is-size-7">(if you don’t want to provide city for some reason, type Minneapolis)</span>
+          <div class="columns mt-1">
+            <div class="column">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-small" name="cityName" [(ngModel)]="homeschool.cityName"
+                    placeholder="city name" required>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="select is-small">
+                <select [(ngModel)]="homeschool.state" name="state">
+                  <option value="MN">MN</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <app-add-child [homeschool]="homeschool"></app-add-child>
+          <h5 class="subtitle is-6 mt-4 mb-2">Currently hosting or willing to host or lead:</h5>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="interestCMBookStudy" [(ngModel)]="homeschool.interestCMBookStudy"
+                placeholder="CM Book study" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="interestNatureWalks" [(ngModel)]="homeschool.interestNatureWalks"
+                placeholder="Nature walks" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="interestCoop" [(ngModel)]="homeschool.interestCoop"
+                placeholder="Co-op" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="interestMentoring" [(ngModel)]="homeschool.interestMentoring"
+                placeholder="CM or homeschool-specific business" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-small" name="interestFriendship" [(ngModel)]="homeschool.interestFriendship"
+                placeholder="Friendship" />
             </div>
           </div>
         </div>
-        <div class="column">
-          <div class="select is-small">
-            <select [(ngModel)]="homeschool.state">
-              <option value="MN">MN</option>
-            </select>
-          </div>
-        </div>
       </div>
-      <app-add-child></app-add-child>
+      <footer class="card-footer">
+        <button type="submit" class="button is-success card-footer-item is-small" (click)="addSchool()">Add</button>
+        <button class="button is-light card-footer-item is-small" (click)="toggleForm()">Close</button>
+      </footer>
     </div>
   </div>
-  <footer class="card-footer">
-    <button class="button is-success card-footer-item is-small">Add</button>
-    <button class="button is-light card-footer-item is-small">Close</button>
-  </footer>
-</div>
+</form>
