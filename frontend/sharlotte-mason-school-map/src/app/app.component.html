@@ -1,17 +1,32 @@
-<div class="section"></div>
-<div class="columns pr-2">
-  <div class="column is-three-quarters">
-    <google-map width="100%" [zoom]="zoom" [center]="center" [options]="options">
-      <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [icon]="marker.icon"
-        [options]="marker.options" (mapClick)="seeDetails(marker.cityName)">
-      </map-marker>
-    </google-map>
-  </div>
-  <div class="column">
-    <app-add-school></app-add-school>
-    <app-homeschool-list cityName="{{cityName}}"></app-homeschool-list>
+<div class="container">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <h1 class="subtitle is-4 header ml-3 has-text-grey-dark mt-4">Charlotta Mason Home Schools MN Map</h1>
 
-  </div>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu ml-5">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Home
+        </a>
+      </div>
+    </div>
+    <div class="navbar-end is-align-items-center">
+      <a class="navbar-item button is-small is-success" (click)="toggleForm()">
+        Add HomeSchool
+      </a>
+    </div>
+  </nav>
+  <app-homeschool-list></app-homeschool-list>
+  <app-add-school [formIsVisible]="formIsVisible" (getFormVisibleChange)="toggleForm()"></app-add-school>
+  <footer class="section">
+
+  </footer>
+  <router-outlet></router-outlet>
 </div>
-<div class="section"></div>
-<router-outlet></router-outlet>

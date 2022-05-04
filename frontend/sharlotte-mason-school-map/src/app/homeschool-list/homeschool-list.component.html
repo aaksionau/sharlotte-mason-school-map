@@ -1,3 +1,39 @@
-<div *ngFor="let homeSchool of homeSchools">
-    FamilyName: {{homeSchool.familyName}}
+<div class="columns">
+  <div class="column is-three-quarters map">
+    <google-map width="100%" height="900px" [zoom]="zoom" [center]="center" [options]="options">
+      <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
+        [icon]="marker.icon" [options]="marker.options" (mapClick)="getHomeSchools(marker.cityName)">
+      </map-marker>
+    </google-map>
+  </div>
+  <div class="column">
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input class="input is-small" type="text" placeholder="City" [(ngModel)]="cityName" />
+      </div>
+      <div class="control">
+        <a class="button is-info is-small" (click)="getHomeSchools(cityName)">
+          Search
+        </a>
+      </div>
+      <p class="control">
+        <a class="button is-white is-small" (click)="getHomeSchools('')">
+          Cancel
+        </a>
+      </p>
+    </div>
+    <div class="results-area">
+      <div *ngFor="let homeSchool of homeSchools" class="homeschool pt-2 pb-2">
+        <p class="subtitle is-small mb-2 has-text-grey-darker is-6">{{homeSchool.familyName}} HomeSchool</p>
+        <p class="content is-small mb-0">Located in {{homeSchool.cityName}}, {{homeSchool.state}}</p>
+        <p class="content is-small mb-0">Email: {{homeSchool.email}}</p>
+        <p class="content is-small mb-0" *ngIf="homeSchool.children.length > 0">
+          Children:
+          <span>{{homeSchool.childrenString}}</span>
+        </p>
+        <p class="content is-small" *ngIf="homeSchool.interests.length > 0">Interested in / leading:
+          {{homeSchool.interestedTopics}} </p>
+      </div>
+    </div>
+  </div>
 </div>

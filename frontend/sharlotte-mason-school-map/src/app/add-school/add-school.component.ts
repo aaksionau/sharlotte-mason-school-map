@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { IHomeSchool } from 'src/interfaces/IHomeSchool';
 import { HomeschoolService } from 'src/services/homeschool.service';
+import { EventEmitter } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
+import { HomeSchool } from 'src/models/homeSchool';
 @Component({
   selector: 'app-add-school',
   templateUrl: './add-school.component.html',
@@ -10,13 +12,17 @@ import { v4 as uuidv4 } from 'uuid';
 export class AddSchoolComponent implements OnInit {
 
   constructor(private homeschoolService: HomeschoolService) { }
+  @Input() formIsVisible?: boolean = false;
+  @Output() getFormVisibleChange: EventEmitter<boolean> = new EventEmitter();
+
+  homeschool: IHomeSchool = new HomeSchool();
 
   ngOnInit(): void {
-
+    this.cleanForm();
   }
-  formIsVisible: boolean = false;
   toggleForm(): void { 
     this.formIsVisible = !this.formIsVisible;
+    this.getFormVisibleChange.emit(this.formIsVisible);
   }
   addSchool(): void {
     if (!this.homeschool.familyName) {
@@ -33,32 +39,35 @@ export class AddSchoolComponent implements OnInit {
 
     this.homeschoolService.addHomeSchool(this.homeschool)
       .subscribe(result => console.warn(result));
+    
+    this.toggleForm();
+    this.cleanForm();
   }
+  cleanForm(): void { 
+    this.homeschool = {
+      id: '',
+      firstName: '',
+      familyName: '',
+      cityName: '',
+      state: 'MN',
+      email: '',
+      children: [],
+      interestedTopics: '',
+      longitude: 0,
+      latitude: 0,
+      added: new Date(),
+      interestCMBookStudy: '',
+      interestCoop: '',
+      interestNatureWalks: '',
+      interestMentoring: '',
+      interestFriendship: ''
+    }
+  }
+
   validateEmail(email:string): boolean {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
   errors: string[] = []
-  homeschool: IHomeSchool = {
-    id: '',
-    firstName: '',
-    familyName: '',
-    cityName: '',
-    state: 'MN',
-    email: '',
-    children: [{
-      id: uuidv4(),
-      yearOfBirth: 2010,
-      gender: 0
-    }],
-    interestedTopics: '',
-    longitude: 0,
-    latitude: 0,
-    added: new Date(),
-    interestCMBookStudy: '',
-    interestCoop: '',
-    interestNatureWalks: '',
-    interestMentoring: '',
-    interestFriendship: ''
-  }
+
 }

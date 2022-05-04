@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { IHomeSchool } from 'src/interfaces/IHomeSchool';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import { HomeSchool } from 'src/models/homeSchool';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class HomeschoolService {
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
-  getHomeSchools(): Observable<IHomeSchool[]> {
-    return this.http.get<IHomeSchool[]>(this.homeSchoolsUrl)
+  getHomeSchools(): Observable<HomeSchool[]> {
+    return this.http.get<HomeSchool[]>(this.homeSchoolsUrl)
       .pipe(
         tap(_ => this.log('fetched schools')),
-        catchError(this.handleError<IHomeSchool[]>('getHomeSchools', []))
+        catchError(this.handleError<HomeSchool[]>('getHomeSchools', []))
     )
   }
   addHomeSchool(homeschool: IHomeSchool): Observable<IHomeSchool> {

@@ -16,6 +16,7 @@ namespace SharlotteMason.Entities
         {
             FamilyName = dto.FamilyName;
             CityName = dto.CityName;
+            State = dto.State;
             Email = dto.Email;
 
             InterestCMBookStudy = dto.InterestCMBookStudy;
@@ -24,6 +25,7 @@ namespace SharlotteMason.Entities
             InterestNatureWalks = dto.InterestNatureWalks;
             InterestNatureWalks = dto.InterestNatureWalks;
         }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string FamilyName { get; set; }
         public string Email { get; set; }
@@ -38,7 +40,9 @@ namespace SharlotteMason.Entities
         
         public List<ChildDto> GetChildren()
         {
-            return JsonConvert.DeserializeObject<List<ChildDto>>(ChildrenJSON);
+            if(!string.IsNullOrEmpty(ChildrenJSON))
+                return JsonConvert.DeserializeObject<List<ChildDto>>(ChildrenJSON);
+            return new List<ChildDto>();
         }
         public void AddChildren(List<ChildDto> children)
         {
@@ -56,10 +60,12 @@ namespace SharlotteMason.Entities
         {
             return new HomeSchoolDto()
             {
+                Id = this.Id,
                 FirstName = this.FirstName,
                 FamilyName = this.FamilyName,
                 Email = this.Email,
                 CityName = this.CityName,
+                State = this.State,
                 Children = this.GetChildren(),
                 Latitude = this.Latitude,
                 Longitude = this.Longitude,

@@ -6,6 +6,7 @@ namespace SharlotteMason.Dtos
 {
     public class HomeSchoolDto
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         [Required]
         public string FamilyName { get; set; }

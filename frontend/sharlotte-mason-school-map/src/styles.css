@@ -1,2 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bulma/css/bulma.min.css";
+
+body{
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+.map{
+    height: 100%;
+}
+.header{
+    font-style: italic;
+    align-self: center;
+}
+.results-area{
+    height:850px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.homeschool{
+    border-bottom: 1px dotted grey;
+}
