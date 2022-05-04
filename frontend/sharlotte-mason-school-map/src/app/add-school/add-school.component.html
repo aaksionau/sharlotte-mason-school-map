@@ -15,7 +15,7 @@
 
               <article class="message is-danger is-small" *ngIf="errors.length > 0">
                 <div class="message-header">
-                  <p class="mt-2">Danger</p>
+                  <p class="mt-2">Ouch! Please fix following errors: </p>
                   <button class="delete" aria-label="delete"></button>
                 </div>
                 <div class="message-body">
@@ -97,8 +97,8 @@
             </div>
           </div>
           <footer class="card-footer">
-            <button type="submit" class="button is-success card-footer-item is-small" (click)="addSchool()">Add</button>
-            <button class="button is-light card-footer-item is-small" (click)="toggleForm()">Close</button>
+            <button type="submit" class="button is-success card-footer-item" (click)="addSchool()">Add</button>
+            <button class="button is-light card-footer-item" (click)="toggleForm()">Close</button>
           </footer>
         </div>
       </div>

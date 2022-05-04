@@ -21,10 +21,12 @@ export class AddSchoolComponent implements OnInit {
     this.cleanForm();
   }
   toggleForm(): void { 
+    this.cleanForm();
     this.formIsVisible = !this.formIsVisible;
     this.getFormVisibleChange.emit(this.formIsVisible);
   }
   addSchool(): void {
+    this.errors = [];
     if (!this.homeschool.familyName) {
       this.errors.push("Family name is required");
     }
@@ -44,6 +46,7 @@ export class AddSchoolComponent implements OnInit {
     this.cleanForm();
   }
   cleanForm(): void { 
+    this.errors = [];
     this.homeschool = {
       id: '',
       firstName: '',
