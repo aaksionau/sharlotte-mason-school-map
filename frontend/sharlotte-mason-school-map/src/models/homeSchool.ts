@@ -43,9 +43,9 @@ export class HomeSchool implements IHomeSchool {
         homeschool.interests = homeschool.interests.filter(s => s);
 
         homeschool.interests.forEach(i => {
-            homeschool.interestedTopics += `${i},`;
+            homeschool.interestedTopics += `${i}, `;
         });
-        homeschool.interestedTopics = homeschool.interestedTopics.slice(0, -1);
+        homeschool.interestedTopics = homeschool.interestedTopics.slice(0, -2);
 
         homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.gender));
         
