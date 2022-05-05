@@ -1,7 +1,7 @@
-<div class="container">
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+<div class="">
+  <nav class="navbar pt-2 pb-2" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <h1 class="subtitle is-4 header ml-3 has-text-grey-dark mt-4">Charlotta Mason Home Schools MN Map</h1>
+      <h1 class="subtitle is-4 header ml-3 has-text-grey-dark mt-4 pl-5">Charlotta Mason Home Schools MN Map</h1>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
@@ -10,23 +10,18 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu ml-5">
+    <div id="navbarBasicExample" class="navbar-menu ml-5 pl-5">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">
-          Home
-        </a>
+        <a class="navbar-item" routerLink="/" routerLinkActive="active">Home</a>
       </div>
     </div>
-    <div class="navbar-end is-align-items-center">
-      <a class="navbar-item button is-success" (click)="toggleForm()">
-        Add HomeSchool
-      </a>
+    <div class="navbar-end is-align-items-center pr-5">
+      <a routerLink="/add-homeschool" routerLinkActive="active" class="navbar-item button is-success">Add HomeSchool</a>
     </div>
   </nav>
-  <app-homeschool-list></app-homeschool-list>
-  <app-add-school [formIsVisible]="formIsVisible" (getFormVisibleChange)="toggleForm()"></app-add-school>
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
   <footer class="section">
-
   </footer>
-  <router-outlet></router-outlet>
 </div>

@@ -17,6 +17,9 @@ body{
     overflow: hidden;
     overflow-y: scroll;
 }
-.homeschool{
-    border-bottom: 1px dotted grey;
+.add-school-form{
+    max-width: 600px;
+}
+.navbar{
+    border-bottom: 1px solid darkgrey;
 }

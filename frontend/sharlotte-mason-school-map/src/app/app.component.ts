@@ -25,13 +25,11 @@ import {
 export class AppComponent implements OnInit {
   title = 'sharlotte-mason-school-map';
 
-  formIsVisible: boolean = false;
+
 
   constructor(private homeSchoolService: HomeschoolService) {}
 
   ngOnInit(): void {
   }
-  toggleForm(): void { 
-    this.formIsVisible = !this.formIsVisible;
-  }
+
 }

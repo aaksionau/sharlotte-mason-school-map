@@ -4,6 +4,7 @@ import { HomeschoolService } from 'src/services/homeschool.service';
 import { EventEmitter } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { HomeSchool } from 'src/models/homeSchool';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-school',
   templateUrl: './add-school.component.html',
@@ -11,7 +12,9 @@ import { HomeSchool } from 'src/models/homeSchool';
 })
 export class AddSchoolComponent implements OnInit {
 
-  constructor(private homeschoolService: HomeschoolService) { }
+  constructor(
+    private homeschoolService: HomeschoolService,
+    private router: Router) { }
   @Input() formIsVisible?: boolean = false;
   @Output() getFormVisibleChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -42,8 +45,7 @@ export class AddSchoolComponent implements OnInit {
     this.homeschoolService.addHomeSchool(this.homeschool)
       .subscribe(result => console.warn(result));
     
-    this.toggleForm();
-    this.cleanForm();
+      this.router.navigate(['/home']);
   }
   cleanForm(): void { 
     this.errors = [];

@@ -8,22 +8,22 @@
     </div>
   </div>
 
-  <div class="columns" *ngFor="let child of homeschool?.children">
+  <div class="columns is-flex is-align-items-center" *ngFor="let child of homeschool?.children">
     <div class="column is-one-quarter">
-      <label for="yearOfBirth" class="content is-small">Year Of Birth</label>
+      <label for="yearOfBirth" class="content">Year Of Birth</label>
     </div>
     <div class="column is-one-quarter">
       <div class="field">
         <div class="control">
-          <input class="input is-small" id="yearOfBirth" type="number" name="yearOfBirth" ng-maxlength="4" [(ngModel)]="child.yearOfBirth" placeholder="year of birth">
+          <input class="input" id="yearOfBirth" type="number" name="yearOfBirth" ng-maxlength="4" [(ngModel)]="child.yearOfBirth" placeholder="year of birth">
         </div>
       </div>
     </div>
       <div class="column">
-        <label class="content is-small">Gender</label>
+        <label class="content">Gender</label>
       </div>
       <div class="column">
-        <div class="select is-small">
+        <div class="select">
           <select [(ngModel)]="child.gender" id="gender" name="gender">
             <option value="0">boy</option>
             <option value="1">girl</option>

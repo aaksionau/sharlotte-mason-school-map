@@ -1,109 +1,94 @@
-<div class="modal" [ngClass]="formIsVisible? 'is-active':''">
-  <div class="modal-background"></div>
-  <div class="modal-content">
+<form class="add-school-form">
+  <h4 class="title is-4">Add Your HomeSchool</h4>
+  <div class="content">
 
-    <form name="frm">
-      <div class="card">
-        <header class="card-header">
-          <div class="card-header-title">
-            Add Your HomeSchool
+    <article class="message is-danger is-small" *ngIf="errors.length > 0">
+      <div class="message-header">
+        <p class="mt-2">Ouch! Please fix following errors: </p>
+        <button class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">
+        <ul class="mb-0 mt-0">
+          <li *ngFor="let error of errors" class="content mb-0 mt-0">{{error}}</li>
+        </ul>
+      </div>
+    </article>
+
+    <div class="field">
+      <div class="control">
+        <input class="input" name="familyName" id="familyName" required [(ngModel)]="homeschool.familyName"
+          placeholder="family name">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="firstName" [(ngModel)]="homeschool.firstName" placeholder="first name (optional)">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="email" type="email" required [(ngModel)]="homeschool.email" placeholder="email">
+      </div>
+    </div>
+    <h5 class="subtitle is-6 mt-4 mb-2">Location:</h5>
+    <span class="is-size-6">(if you don’t want to provide city for some reason, type Minneapolis)</span>
+    <div class="columns mt-1">
+      <div class="column">
+        <div class="field">
+          <div class="control">
+            <input class="input" name="cityName" [(ngModel)]="homeschool.cityName" placeholder="city name" required>
           </div>
-        </header>
-        <div class="content" *ngIf="formIsVisible">
-          <div class="card-content">
-            <div class="content">
-
-              <article class="message is-danger is-small" *ngIf="errors.length > 0">
-                <div class="message-header">
-                  <p class="mt-2">Ouch! Please fix following errors: </p>
-                  <button class="delete" aria-label="delete"></button>
-                </div>
-                <div class="message-body">
-                  <ul class="mb-0 mt-0">
-                    <li *ngFor="let error of errors" class="content is-small mb-0 mt-0">{{error}}</li>
-                  </ul>
-                </div>
-              </article>
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="familyName" id="familyName" required
-                    [(ngModel)]="homeschool.familyName" placeholder="family name">
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="firstName" [(ngModel)]="homeschool.firstName"
-                    placeholder="first name (optional)">
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="email" type="email" required [(ngModel)]="homeschool.email"
-                    placeholder="email">
-                </div>
-              </div>
-              <h5 class="subtitle is-6 mt-4 mb-0">Location:</h5>
-              <span class="is-size-7">(if you don’t want to provide city for some reason, type Minneapolis)</span>
-              <div class="columns mt-1">
-                <div class="column">
-                  <div class="field">
-                    <div class="control">
-                      <input class="input is-small" name="cityName" [(ngModel)]="homeschool.cityName"
-                        placeholder="city name" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="column">
-                  <div class="select is-small">
-                    <select [(ngModel)]="homeschool.state" name="state">
-                      <option value="MN">MN</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <app-add-child [homeschool]="homeschool"></app-add-child>
-              <h5 class="subtitle is-6 mt-4 mb-2">Currently hosting or willing to host or lead:</h5>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="interestCMBookStudy" [(ngModel)]="homeschool.interestCMBookStudy"
-                    placeholder="CM Book study" />
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="interestNatureWalks" [(ngModel)]="homeschool.interestNatureWalks"
-                    placeholder="Nature walks" />
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="interestCoop" [(ngModel)]="homeschool.interestCoop"
-                    placeholder="Co-op" />
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="interestMentoring" [(ngModel)]="homeschool.interestMentoring"
-                    placeholder="CM or homeschool-specific business" />
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" name="interestFriendship" [(ngModel)]="homeschool.interestFriendship"
-                    placeholder="Friendship" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <button type="submit" class="button is-success card-footer-item" (click)="addSchool()">Add</button>
-            <button class="button is-light card-footer-item" (click)="toggleForm()">Close</button>
-          </footer>
         </div>
       </div>
-    </form>
-    <!-- Any other Bulma elements you want -->
+      <div class="column">
+        <div class="select">
+          <select [(ngModel)]="homeschool.state" name="state">
+            <option value="MN">MN</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <app-add-child [homeschool]="homeschool"></app-add-child>
+    <h5 class="subtitle is-6 mt-4">Currently hosting or willing to host or lead:</h5>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="interestCMBookStudy" [(ngModel)]="homeschool.interestCMBookStudy"
+          placeholder="CM Book study" />
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="interestNatureWalks" [(ngModel)]="homeschool.interestNatureWalks"
+          placeholder="Nature walks" />
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="interestCoop" [(ngModel)]="homeschool.interestCoop" placeholder="Co-op" />
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="interestMentoring" [(ngModel)]="homeschool.interestMentoring"
+          placeholder="CM or homeschool-specific business" />
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" name="interestFriendship" [(ngModel)]="homeschool.interestFriendship"
+          placeholder="Friendship" />
+      </div>
+    </div>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
-</div>
+  <div class="field is-grouped">
+    <p class="control">
+      <button type="submit" class="button is-success card-footer-item" (click)="addSchool()">Save</button>
+    </p>
+    <p class="control">
+      <button class="button is-light card-footer-item" (click)="cleanForm()">Clear</button>
+    </p>
+    <p class="control">
+      <a routerLink="/" routerLinkActive="active" class="button is-white card-footer-item" >Go To Main Page</a>
+    </p>
+  </div>
+</form>

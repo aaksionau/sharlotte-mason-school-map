@@ -10,21 +10,32 @@ import { HomeschoolListComponent } from './homeschool-list/homeschool-list.compo
 import { AddSchoolComponent } from './add-school/add-school.component';
 import { FormsModule } from '@angular/forms';
 import { AddChildComponent } from './add-child/add-child.component';
+import { HomeComponent } from './home/home.component';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'add-homeschool', component: AddSchoolComponent },
+  { path: '', redirectTo: '/home', pathMatch:'full' }
+];
 @NgModule({
   declarations: [
     AppComponent,
     HomeschoolListComponent,
     AddSchoolComponent,
-    AddChildComponent
+    AddChildComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
