@@ -4,11 +4,11 @@ import { IHomeSchool } from 'src/interfaces/IHomeSchool';
 import {v4 as uuidv4} from 'uuid';
 
 @Component({
-  selector: 'app-add-child',
-  templateUrl: './add-child.component.html',
-  styleUrls: ['./add-child.component.css']
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css']
 })
-export class AddChildComponent implements OnInit {
+export class ChildComponent implements OnInit {
 
   constructor() { }
   ngOnInit(): void {

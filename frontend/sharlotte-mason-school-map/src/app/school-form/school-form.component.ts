@@ -4,17 +4,18 @@ import { HomeschoolService } from 'src/services/homeschool.service';
 import { EventEmitter } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { HomeSchool } from 'src/models/homeSchool';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-add-school',
-  templateUrl: './add-school.component.html',
-  styleUrls: ['./add-school.component.css']
+  selector: 'app-school-form',
+  templateUrl: './school-form.component.html',
+  styleUrls: ['./school-form.component.css']
 })
-export class AddSchoolComponent implements OnInit {
+export class SchoolFormComponent implements OnInit {
 
   constructor(
     private homeschoolService: HomeschoolService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
   @Input() formIsVisible?: boolean = false;
   @Output() getFormVisibleChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -22,13 +23,22 @@ export class AddSchoolComponent implements OnInit {
 
   ngOnInit(): void {
     this.cleanForm();
+    this.getHomeSchool();
   }
   toggleForm(): void { 
     this.cleanForm();
     this.formIsVisible = !this.formIsVisible;
     this.getFormVisibleChange.emit(this.formIsVisible);
   }
-  addSchool(): void {
+  getHomeSchool(): void { 
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.homeschoolService.getHomeSchoolById(id)
+      .subscribe(school => { 
+        this.homeschool = new HomeSchool().mapSchool(school);
+      })
+  }
+
+  saveSchool(): void {
     this.errors = [];
     if (!this.homeschool.familyName) {
       this.errors.push("Family name is required");
@@ -42,7 +52,7 @@ export class AddSchoolComponent implements OnInit {
 
     if (this.errors.length > 0) return;
 
-    this.homeschoolService.addHomeSchool(this.homeschool)
+    this.homeschoolService.saveHomeSchool(this.homeschool)
       .subscribe(result => console.warn(result));
     
       this.router.navigate(['/home']);

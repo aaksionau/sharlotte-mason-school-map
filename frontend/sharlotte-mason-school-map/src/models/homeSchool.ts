@@ -46,13 +46,20 @@ export class HomeSchool implements IHomeSchool {
             homeschool.interestedTopics += `${i}, `;
         });
         homeschool.interestedTopics = homeschool.interestedTopics.slice(0, -2);
-
-        homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.gender));
+        homeschool.children = val.children.map(s=>new Child(s.yearOfBirth, s.gender));
+        if (homeschool.children.length != 0) {
+            homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.gender));
         
-        homeschool.children.forEach(ch => {
-            homeschool.childrenString += `${ch.genderString} (${ch.age}), `
-        });
-        homeschool.childrenString = homeschool.childrenString.slice(0, -2);
+            homeschool.children.forEach(ch => {
+                homeschool.childrenString += `${ch.genderString} (${ch.age}), `
+            });
+            homeschool.childrenString = homeschool.childrenString.slice(0, -2);   
+        }
+        homeschool.interestCMBookStudy = val.interestCMBookStudy;
+        homeschool.interestCoop = val.interestCoop;
+        homeschool.interestFriendship = val.interestFriendship;
+        homeschool.interestMentoring = val.interestMentoring;
+        homeschool.interestNatureWalks = val.interestNatureWalks;
 
         return homeschool;
     }

@@ -12,9 +12,11 @@ namespace SharlotteMason.Entities
         public HomeSchool()
         {
         }
-        public HomeSchool(HomeSchoolDto dto) : base(Guid.NewGuid().ToString(), "homeschool")
+        public HomeSchool(string id, HomeSchoolDto dto) : base(id, "homeschool")
         {
+            Id = id;
             FamilyName = dto.FamilyName;
+            FirstName = dto.FirstName;
             CityName = dto.CityName;
             State = dto.State;
             Email = dto.Email;
@@ -24,6 +26,7 @@ namespace SharlotteMason.Entities
             InterestMentoring = dto.InterestMentoring;
             InterestNatureWalks = dto.InterestNatureWalks;
             InterestNatureWalks = dto.InterestNatureWalks;
+            InterestCoop = dto.InterestCoop;
         }
         public string Id { get; set; }
         public string FirstName { get; set; }

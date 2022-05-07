@@ -7,23 +7,24 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule } from '@angular/common';
 import { HomeschoolListComponent } from './homeschool-list/homeschool-list.component';
-import { AddSchoolComponent } from './add-school/add-school.component';
+import { SchoolFormComponent } from './school-form/school-form.component';
 import { FormsModule } from '@angular/forms';
-import { AddChildComponent } from './add-child/add-child.component';
+import { ChildComponent } from './child/child.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'add-homeschool', component: AddSchoolComponent },
+  { path: 'homeschool', component: SchoolFormComponent },
+  { path: 'homeschool/:id', component: SchoolFormComponent},
   { path: '', redirectTo: '/home', pathMatch:'full' }
 ];
 @NgModule({
   declarations: [
     AppComponent,
     HomeschoolListComponent,
-    AddSchoolComponent,
-    AddChildComponent,
+    SchoolFormComponent,
+    ChildComponent,
     HomeComponent
   ],
   imports: [

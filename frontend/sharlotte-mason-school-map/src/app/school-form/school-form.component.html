@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <app-add-child [homeschool]="homeschool"></app-add-child>
+    <app-child [homeschool]="homeschool"></app-child>
     <h5 class="subtitle is-6 mt-4">Currently hosting or willing to host or lead:</h5>
     <div class="field">
       <div class="control">
@@ -82,7 +82,7 @@
   </div>
   <div class="field is-grouped">
     <p class="control">
-      <button type="submit" class="button is-success card-footer-item" (click)="addSchool()">Save</button>
+      <button type="submit" class="button is-success card-footer-item" (click)="saveSchool()">Save</button>
     </p>
     <p class="control">
       <button class="button is-light card-footer-item" (click)="cleanForm()">Clear</button>

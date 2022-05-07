@@ -15,19 +15,19 @@ using SharlotteMason.Services;
 
 namespace SharlotteMason.Functions
 {
-    public class AddHomeSchool
+    public class SaveHomeSchool
     {
         private readonly ITableStorageService tableStorageService;
         private readonly IGoogleGeoLocationService googleGeoLocationService;
 
-        public AddHomeSchool(
+        public SaveHomeSchool(
             ITableStorageService tableStorageService,
             IGoogleGeoLocationService googleGeoLocationService)
         {
             this.tableStorageService = tableStorageService;
             this.googleGeoLocationService = googleGeoLocationService ?? throw new ArgumentNullException(nameof(googleGeoLocationService));
         }
-        [FunctionName("AddHomeSchool")]
+        [FunctionName("SaveHomeSchool")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -41,7 +41,10 @@ namespace SharlotteMason.Functions
 
             var data = httpResponseBody.Value;
 
-            var entity = new HomeSchool(data);
+            if(string.IsNullOrEmpty(data.Id))
+                data.Id = Guid.NewGuid().ToString();
+
+            var entity = new HomeSchool(data.Id, data);
             entity.AddChildren(data.Children);
 
             var coordinates = this.googleGeoLocationService.GetCoordinates(data);

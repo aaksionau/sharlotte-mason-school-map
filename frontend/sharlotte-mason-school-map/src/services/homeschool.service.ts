@@ -20,10 +20,17 @@ export class HomeschoolService {
         catchError(this.handleError<HomeSchool[]>('getHomeSchools', []))
     )
   }
-  addHomeSchool(homeschool: IHomeSchool): Observable<IHomeSchool> {
+  getHomeSchoolById(id: string): Observable<IHomeSchool> { 
+    return this.http.get<IHomeSchool>(`${this.getHomeSchoolByIdUrl}?id=${id}`)
+      .pipe(
+        tap(_ => this.log('fetched school by id')),
+        catchError(this.handleError<IHomeSchool>('getHomeSchoolById', new HomeSchool()))
+    )
+  }
+  saveHomeSchool(homeschool: IHomeSchool): Observable<IHomeSchool> {
     return this.http.post<IHomeSchool>(this.addHomeSchoolUrl, homeschool, this.httpOptions).pipe(
-      tap((newHomeschool: IHomeSchool) => this.log(`added homeschool w/ id=${newHomeschool.id}`)),
-      catchError(this.handleError<IHomeSchool>('addnewHomeschool'))
+      tap((newHomeschool: IHomeSchool) => this.log(`saved homeschool w/ id=${newHomeschool.id}`)),
+      catchError(this.handleError<IHomeSchool>('saveHomeschool'))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {
@@ -39,7 +46,8 @@ export class HomeschoolService {
   }
 
   homeSchoolsUrl = 'https://sharlottemasonschool.azurewebsites.net/api/GetHomeSchools';
-  addHomeSchoolUrl = 'https://sharlottemasonschool.azurewebsites.net/api/AddHomeSchool';
+  addHomeSchoolUrl = 'https://sharlottemasonschool.azurewebsites.net/api/SaveHomeSchool';
+  getHomeSchoolByIdUrl = 'https://sharlottemasonschool.azurewebsites.net/api/GetHomeSchoolById';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
