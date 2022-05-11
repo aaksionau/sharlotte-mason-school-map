@@ -17,6 +17,8 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
   homeSchools: HomeSchool[] = [];
   markers: MarkerGroup[] = [];
   groupedSchools: any;
+  emailTo: string = '';
+  nameTo: string = '';
   cityName: string = '';
   zoom = 10;
   center: google.maps.LatLngLiteral | any;
@@ -28,10 +30,15 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
     maxZoom: 15,
     minZoom: 8,
   }
-
+  showModal: boolean = false;
   ngOnInit(): void {
     this.getLocation();
     this.getHomeSchools(this.cityName);
+  }
+  sendEmail(emailTo: string, nameTo: string): void { 
+    this.emailTo = emailTo;
+    this.nameTo = nameTo;
+    this.showModal = true;
   }
   getHomeSchools(city: string | any): void {
     this.cityName = city;
@@ -46,7 +53,9 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
         this.updateMap();
       });
   }
-
+  changeStatus(isVisible: boolean): void { 
+    this.showModal = isVisible;
+  }
   updateMap(): void {
     this.markers = [];
     this.homeSchoolService.getHomeSchools()

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using backend.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -19,18 +20,21 @@ namespace SharlotteMason.Functions
     {
         private readonly ITableStorageService tableStorageService;
         private readonly IGoogleGeoLocationService googleGeoLocationService;
+        private readonly IEmailSender emailSender;
 
         public SaveHomeSchool(
             ITableStorageService tableStorageService,
-            IGoogleGeoLocationService googleGeoLocationService)
+            IGoogleGeoLocationService googleGeoLocationService, 
+            IEmailSender emailSender)
         {
             this.tableStorageService = tableStorageService;
             this.googleGeoLocationService = googleGeoLocationService ?? throw new ArgumentNullException(nameof(googleGeoLocationService));
+            this.emailSender = emailSender ?? throw new ArgumentNullException(nameof(emailSender));
         }
         [FunctionName("SaveHomeSchool")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+            ILogger log, ExecutionContext context)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -52,7 +56,12 @@ namespace SharlotteMason.Functions
 
             await tableStorageService.InsertOrMergeAsync(entity);
 
-            return new OkObjectResult("Ok");
+            string pathToTemplate = Path.Combine(context.FunctionAppDirectory, "emails", "homeSchoolDetails.html");
+            var emailMessage = new EmailMessage(entity, pathToTemplate);
+            await this.emailSender.SendMessage(emailMessage);
+
+
+            return new OkObjectResult(entity.Id);
         }
     }
 }

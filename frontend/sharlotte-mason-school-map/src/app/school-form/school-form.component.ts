@@ -17,18 +17,12 @@ export class SchoolFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
   @Input() formIsVisible?: boolean = false;
-  @Output() getFormVisibleChange: EventEmitter<boolean> = new EventEmitter();
 
   homeschool: IHomeSchool = new HomeSchool();
 
   ngOnInit(): void {
     this.cleanForm();
     this.getHomeSchool();
-  }
-  toggleForm(): void { 
-    this.cleanForm();
-    this.formIsVisible = !this.formIsVisible;
-    this.getFormVisibleChange.emit(this.formIsVisible);
   }
   getHomeSchool(): void { 
     const id = String(this.route.snapshot.paramMap.get('id'));

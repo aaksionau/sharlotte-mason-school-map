@@ -7,6 +7,7 @@ export class HomeSchool implements IHomeSchool {
     public id: string = '';
     public firstName: string = '';
     public familyName: string = '';
+    public fullName: string = `${this.firstName} ${this.familyName}`;
     public cityName: string = '';
     public state: string = 'MN';
     public email: string = '';

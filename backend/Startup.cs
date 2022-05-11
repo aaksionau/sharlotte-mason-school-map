@@ -1,3 +1,4 @@
+using backend.Services;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using SharlotteMason.Services;
@@ -11,6 +12,7 @@ namespace SharlotteMason
         {
             builder.Services.AddScoped<ITableStorageService, TableStorageService>();
             builder.Services.AddScoped<IGoogleGeoLocationService, GoogleGeoLocationService>();
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
             builder.Services.AddLogging();
         }
     }

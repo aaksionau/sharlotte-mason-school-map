@@ -5,6 +5,8 @@ import { IHomeSchool } from 'src/interfaces/IHomeSchool';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HomeSchool } from 'src/models/homeSchool';
+import { Message } from 'src/models/message';
+import { IMessageResult } from 'src/interfaces/IMessageResult';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,13 @@ export class HomeschoolService {
         catchError(this.handleError<IHomeSchool>('getHomeSchoolById', new HomeSchool()))
     )
   }
+  sendMessage(message: Message): Observable<IMessageResult> { 
+    return this.http.post<IMessageResult>(this.sendMessageUrl, message, this.httpOptions)
+      .pipe(
+        tap((result: IMessageResult) => this.log(`result of sending message: ${result}`)),
+        catchError(this.handleError<IMessageResult>('send message'))
+      );
+  }
   saveHomeSchool(homeschool: IHomeSchool): Observable<IHomeSchool> {
     return this.http.post<IHomeSchool>(this.addHomeSchoolUrl, homeschool, this.httpOptions).pipe(
       tap((newHomeschool: IHomeSchool) => this.log(`saved homeschool w/ id=${newHomeschool.id}`)),
@@ -48,6 +57,7 @@ export class HomeschoolService {
   homeSchoolsUrl = 'https://sharlottemasonschool.azurewebsites.net/api/GetHomeSchools';
   addHomeSchoolUrl = 'https://sharlottemasonschool.azurewebsites.net/api/SaveHomeSchool';
   getHomeSchoolByIdUrl = 'https://sharlottemasonschool.azurewebsites.net/api/GetHomeSchoolById';
+  sendMessageUrl = 'https://prod-05.centralus.logic.azure.com:443/workflows/72b9f776cb8c46cfb32aa480e2b07f7b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2TH3DPqFcTjjwONv_WeckXAdCmSTjFWNZ1ewYvJ572g';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

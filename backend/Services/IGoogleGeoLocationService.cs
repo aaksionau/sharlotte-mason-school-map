@@ -41,8 +41,9 @@ namespace SharlotteMason.Services
             }
             catch (WebException ex)
             {
-                this.log.LogError($"Google Maps API error for address: {homeSchool.CityName}, {homeSchool.State}", ex.Message);
+               this.log.LogError($"Google Maps API error for address: {homeSchool.CityName}, {homeSchool.State}", ex.Message);
             }
+            
             return new CoordinatesDto(new MapPoint());
         }
     }

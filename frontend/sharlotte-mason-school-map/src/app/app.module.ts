@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ChildComponent } from './child/child.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     HomeschoolListComponent,
     SchoolFormComponent,
     ChildComponent,
-    HomeComponent
+    HomeComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

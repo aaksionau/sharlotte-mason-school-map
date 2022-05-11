@@ -25,18 +25,19 @@
     <div class="results-area">
       <article *ngFor="let homeSchool of homeSchools" class="message">
         <div class="message-body">
-          <p class="subtitle mb-2 has-text-grey-darker is-6 has-text-weight-bold">{{homeSchool.familyName}} HomeSchool
+          <p class="subtitle mb-2 has-text-grey-darker is-6 has-text-weight-bold">{{homeSchool.familyName}} home school
           </p>
-          <p class="content mb-0">Located in {{homeSchool.cityName}}, {{homeSchool.state}}</p>
-          <p class="content mb-0">Email: {{homeSchool.email}}</p>
-          <p class="content mb-0" *ngIf="homeSchool.children.length > 0">
+          <p class="content mb-0 is-small">Located in {{homeSchool.cityName}}, {{homeSchool.state}}</p>
+          <p class="content mb-0 is-small" *ngIf="homeSchool.children.length > 0">
             Children:
             <span>{{homeSchool.childrenString}}</span>
           </p>
-          <p class="content" *ngIf="homeSchool.interests.length > 0">Interested in / leading:
+          <p class="content is-small mb-1" *ngIf="homeSchool.interests.length > 0">Interested in / leading:
             {{homeSchool.interestedTopics}} </p>
+            <button class="btn is-small" (click)="sendEmail(homeSchool.email, homeSchool.fullName)">Send a message</button>
         </div>
       </article>
     </div>
   </div>
 </div>
+<app-message [to]="emailTo" [toName]="nameTo" [showModal]="showModal" (getModalStatusEvent)="changeStatus(showModal)"></app-message>
