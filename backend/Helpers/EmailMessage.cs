@@ -44,7 +44,8 @@ namespace SharlotteMason.Helpers
 
             Html = Html.Replace("{{FamilyName}}", this.homeSchool.FamilyName);
             Html = Html.Replace("{{HomeSchoolId}}", this.homeSchool.Id);
-            Html = Html.Replace("{{Name}}", this.Message.Name);
+            if(this.Message != null)
+                Html = Html.Replace("{{Name}}", this.Message.Name);
             Html = Html.Replace("{{Body}}", this.Body);
             Html = Html.Replace("{{Email}}", this.From);
         }

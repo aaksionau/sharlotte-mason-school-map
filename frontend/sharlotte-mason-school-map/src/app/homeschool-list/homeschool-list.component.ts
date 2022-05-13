@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { IHomeSchool } from 'src/interfaces/IHomeSchool';
-import { Child } from 'src/models/child';
 import { HomeSchool } from 'src/models/homeSchool';
 import { Marker } from 'src/models/marker';
 import { MarkerGroup } from 'src/models/markerGroup';
@@ -17,8 +15,7 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
   homeSchools: HomeSchool[] = [];
   markers: MarkerGroup[] = [];
   groupedSchools: any;
-  emailTo: string = '';
-  nameTo: string = '';
+  homeSchoolId: string = '';
   cityName: string = '';
   zoom = 10;
   center: google.maps.LatLngLiteral | any;
@@ -35,9 +32,8 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
     this.getLocation();
     this.getHomeSchools(this.cityName);
   }
-  sendEmail(emailTo: string, nameTo: string): void { 
-    this.emailTo = emailTo;
-    this.nameTo = nameTo;
+  sendEmail(homeSchoolId: string): void { 
+    this.homeSchoolId = homeSchoolId;
     this.showModal = true;
   }
   getHomeSchools(city: string | any): void {
@@ -53,8 +49,8 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
         this.updateMap();
       });
   }
-  changeStatus(isVisible: boolean): void { 
-    this.showModal = isVisible;
+  changeStatus(): void { 
+    this.showModal = !this.showModal;
   }
   updateMap(): void {
     this.markers = [];

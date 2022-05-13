@@ -34,10 +34,10 @@
           </p>
           <p class="content is-small mb-1" *ngIf="homeSchool.interests.length > 0">Interested in / leading:
             {{homeSchool.interestedTopics}} </p>
-            <button class="btn is-small" (click)="sendEmail(homeSchool.email, homeSchool.fullName)">Send a message</button>
+            <button class="btn is-small" (click)="sendEmail(homeSchool.id)">Send a message</button>
         </div>
       </article>
     </div>
   </div>
 </div>
-<app-message [to]="emailTo" [toName]="nameTo" [showModal]="showModal" (getModalStatusEvent)="changeStatus(showModal)"></app-message>
+<app-message [homeSchoolId]="homeSchoolId" [showModal]="showModal" (getModalStatusEvent)="changeStatus()"></app-message>

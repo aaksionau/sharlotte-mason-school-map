@@ -57,7 +57,7 @@ export class HomeschoolService {
   homeSchoolsUrl = 'https://sharlottemasonschool.azurewebsites.net/api/GetHomeSchools';
   addHomeSchoolUrl = 'https://sharlottemasonschool.azurewebsites.net/api/SaveHomeSchool';
   getHomeSchoolByIdUrl = 'https://sharlottemasonschool.azurewebsites.net/api/GetHomeSchoolById';
-  sendMessageUrl = 'https://prod-05.centralus.logic.azure.com:443/workflows/72b9f776cb8c46cfb32aa480e2b07f7b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2TH3DPqFcTjjwONv_WeckXAdCmSTjFWNZ1ewYvJ572g';
+  sendMessageUrl = 'https://sharlottemasonschool.azurewebsites.net/api/SendMessageToOwner';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
