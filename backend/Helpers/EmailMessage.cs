@@ -27,7 +27,8 @@ namespace SharlotteMason.Helpers
             this.To = homeSchool.Email;
             this.Subject = "Thank you for adding your CM homeschool to our map.";
             this.homeSchool = homeSchool;
-
+            this.templateName = templateName;
+            
             SetHtmlBody();
         }
 
