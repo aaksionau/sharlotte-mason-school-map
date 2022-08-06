@@ -12,16 +12,24 @@ export class HomeSchool implements IHomeSchool {
     public state: string = 'MN';
     public email: string = '';
     public children: Child[] = [];
-    public interestedTopics: string = '';
+    public leadingGroupsText: string = '';
     public longitude: number = 0;
     public latitude: number = 0;
     public added: Date = new Date();
-    public interestCMBookStudy: string = '';
-    public interestCoop: string = '';
-    public interestNatureWalks: string = '';
-    public interestMentoring: string = '';
-    public interestFriendship: string = '';
-    public interests: Array<string> = [];
+    public leadingCMBookStudy: string = '';
+    public leadingCoop: string = '';
+    public leadingNatureWalks: string = '';
+    public leadingMentoring: string = '';
+    public leadingOther: string = '';
+
+    public interestCMBookStudy: boolean = false;
+    public interestCoop: boolean = false;
+    public interestNatureWalks: boolean = false;
+    public interestFriends: boolean = false;
+
+    public interests: string = '';
+
+    public leadingGroups: Array<string> = [];
     public addChild(yearOfBirth: number, gender: number): void {
         this.children.push(new Child(yearOfBirth, gender));
     }
@@ -39,14 +47,14 @@ export class HomeSchool implements IHomeSchool {
         homeschool.longitude = val.longitude;
         homeschool.latitude = val.latitude;
         homeschool.added = val.added;
-        homeschool.interests = [val.interestCMBookStudy, val.interestCoop, val.interestFriendship, val.interestMentoring, val.interestNatureWalks];
+        homeschool.leadingGroups = [val.leadingCMBookStudy, val.leadingCoop, val.leadingOther, val.leadingMentoring, val.leadingNatureWalks];
 
-        homeschool.interests = homeschool.interests.filter(s => s);
+        homeschool.leadingGroups = homeschool.leadingGroups.filter(s => s);
 
-        homeschool.interests.forEach(i => {
-            homeschool.interestedTopics += `${i}, `;
+        homeschool.leadingGroups.forEach(i => {
+            homeschool.leadingGroupsText += `${i}, `;
         });
-        homeschool.interestedTopics = homeschool.interestedTopics.slice(0, -2);
+        homeschool.leadingGroupsText = homeschool.leadingGroupsText.slice(0, -2);
         homeschool.children = val.children.map(s=>new Child(s.yearOfBirth, s.gender));
         if (homeschool.children.length != 0) {
             homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.gender));
@@ -56,12 +64,31 @@ export class HomeSchool implements IHomeSchool {
             });
             homeschool.childrenString = homeschool.childrenString.slice(0, -2);   
         }
+        homeschool.leadingCMBookStudy = val.leadingCMBookStudy;
+        homeschool.leadingCoop = val.leadingCoop;
+        homeschool.leadingOther = val.leadingOther;
+        homeschool.leadingMentoring = val.leadingMentoring;
+        homeschool.leadingNatureWalks = val.leadingNatureWalks;
+
         homeschool.interestCMBookStudy = val.interestCMBookStudy;
         homeschool.interestCoop = val.interestCoop;
-        homeschool.interestFriendship = val.interestFriendship;
-        homeschool.interestMentoring = val.interestMentoring;
+        homeschool.interestFriends = val.interestFriends;
         homeschool.interestNatureWalks = val.interestNatureWalks;
+        
+        if(homeschool.interestCMBookStudy)
+            homeschool.interests += 'Book Study';
+        
+        if (homeschool.interestCoop)
+            homeschool.interests += ', CM Coop';
 
+        if (homeschool.interestFriends)
+            homeschool.interests += ', Friends';
+
+        if (homeschool.interestNatureWalks)
+            homeschool.interests += ', Nature Walks';
+        
+        homeschool.interests = homeschool.interests.replace(new RegExp("^,"),"");
+        
         return homeschool;
     }
 }

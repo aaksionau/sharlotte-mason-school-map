@@ -14,7 +14,7 @@ import { IMessageResult } from 'src/interfaces/IMessageResult';
 export class HomeschoolService {
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
-
+  
   getHomeSchools(): Observable<HomeSchool[]> {
     return this.http.get<HomeSchool[]>(this.homeSchoolsUrl)
       .pipe(

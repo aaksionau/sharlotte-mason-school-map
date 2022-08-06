@@ -22,11 +22,15 @@ namespace SharlotteMason.Entities
             Email = dto.Email;
 
             InterestCMBookStudy = dto.InterestCMBookStudy;
-            InterestFriendship = dto.InterestFriendship;
-            InterestMentoring = dto.InterestMentoring;
-            InterestNatureWalks = dto.InterestNatureWalks;
+            InterestFriends = dto.InterestFriends;
             InterestNatureWalks = dto.InterestNatureWalks;
             InterestCoop = dto.InterestCoop;
+
+            LeadingBookStudy = dto.LeadingCMBookStudy;
+            LeadingCMCoop = dto.LeadingCoop;
+            LeadingMentoring = dto.LeadingMentoring;
+            LeadingNatureWalks = dto.LeadingNatureWalks;
+            LeadingOther = dto.LeadingOther;
         }
         public string Id { get; set; }
         public string FirstName { get; set; }
@@ -34,13 +38,20 @@ namespace SharlotteMason.Entities
         public string Email { get; set; }
         public string CityName { get; set; }
         public string State { get; set; }
-        public string InterestCMBookStudy { get; set; }
-        public string InterestNatureWalks { get; set; }
-        public string InterestCoop { get; set; }
-        public string InterestMentoring { get; set; }
-        public string InterestFriendship { get; set; }
-        
-        
+        public bool InterestCMBookStudy { get; set; }
+        public bool InterestNatureWalks { get; set; }
+        public bool InterestCoop { get; set; }
+        public bool InterestFriends { get; set; }
+        public string LeadingOther { get; set; }
+        public string LeadingCMCoop { get; set; }
+        public string LeadingBookStudy { get; set; }
+        public string LeadingNatureWalks { get; set; }
+        public string LeadingMentoring { get; set; }
+        public string ChildrenJSON { get; set; }
+        public DateTimeOffset Added { get; set; } = DateTimeOffset.Now;
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+
         public List<ChildDto> GetChildren()
         {
             if(!string.IsNullOrEmpty(ChildrenJSON))
@@ -75,13 +86,13 @@ namespace SharlotteMason.Entities
                 InterestCMBookStudy = this.InterestCMBookStudy,
                 InterestCoop = this.InterestCoop,
                 InterestNatureWalks = this.InterestNatureWalks,
-                InterestMentoring = this.InterestMentoring,
-                InterestFriendship = this.InterestFriendship
-            };
+                InterestFriends = this.InterestFriends,
+                LeadingOther = this.LeadingOther,
+                LeadingCMBookStudy = this.LeadingBookStudy,
+                LeadingCoop = this.LeadingCMCoop,
+                LeadingMentoring = this.LeadingMentoring,
+                LeadingNatureWalks = this.LeadingNatureWalks
+        };
         }
-        public string ChildrenJSON { get; set; }
-        public DateTimeOffset Added { get; set; } = DateTimeOffset.Now;
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
     }
 }

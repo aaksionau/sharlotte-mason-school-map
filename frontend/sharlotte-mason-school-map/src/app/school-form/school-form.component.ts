@@ -5,6 +5,7 @@ import { EventEmitter } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { HomeSchool } from 'src/models/homeSchool';
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-school-form',
   templateUrl: './school-form.component.html',
@@ -19,10 +20,12 @@ export class SchoolFormComponent implements OnInit {
   @Input() formIsVisible?: boolean = false;
 
   homeschool: IHomeSchool = new HomeSchool();
-
   ngOnInit(): void {
     this.cleanForm();
     this.getHomeSchool();
+  }
+  emittedNameByCitySearch(city: string) {
+    this.homeschool.cityName = city;
   }
   getHomeSchool(): void { 
     const id = String(this.route.snapshot.paramMap.get('id'));
@@ -61,15 +64,20 @@ export class SchoolFormComponent implements OnInit {
       state: 'MN',
       email: '',
       children: [],
-      interestedTopics: '',
+      leadingGroupsText: '',
       longitude: 0,
       latitude: 0,
       added: new Date(),
-      interestCMBookStudy: '',
-      interestCoop: '',
-      interestNatureWalks: '',
-      interestMentoring: '',
-      interestFriendship: ''
+      leadingCMBookStudy: '',
+      leadingCoop: '',
+      leadingNatureWalks: '',
+      leadingMentoring: '',
+      leadingOther: '',
+
+      interestCMBookStudy: false,
+      interestCoop: false,
+      interestNatureWalks: false,
+      interestFriends: false
     }
   }
 

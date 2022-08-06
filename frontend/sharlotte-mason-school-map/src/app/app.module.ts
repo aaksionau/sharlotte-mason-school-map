@@ -13,6 +13,8 @@ import { ChildComponent } from './child/child.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MessageComponent } from './message/message.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { AutoCompleteSearchComponent } from './auto-complete-search/auto-complete-search.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,12 +29,14 @@ const appRoutes: Routes = [
     SchoolFormComponent,
     ChildComponent,
     HomeComponent,
-    MessageComponent
+    MessageComponent,
+    AutoCompleteSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
+    AutocompleteLibModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(

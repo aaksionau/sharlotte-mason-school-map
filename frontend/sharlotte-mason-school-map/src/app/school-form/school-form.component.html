@@ -17,26 +17,26 @@
     <div class="field">
       <div class="control">
         <input class="input" name="familyName" id="familyName" required [(ngModel)]="homeschool.familyName"
-          placeholder="family name">
+          placeholder="Family name">
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" name="firstName" [(ngModel)]="homeschool.firstName" placeholder="first name (optional)">
+        <input class="input" name="firstName" [(ngModel)]="homeschool.firstName" placeholder="First name (optional)">
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" name="email" type="email" required [(ngModel)]="homeschool.email" placeholder="email">
+        <input class="input" name="email" type="email" required [(ngModel)]="homeschool.email" placeholder="Email">
       </div>
     </div>
     <h5 class="subtitle is-6 mt-4 mb-2">Location:</h5>
-    <span class="is-size-6">(if you don’t want to provide city for some reason, type Minneapolis)</span>
+    <span class="is-size-6">(If you don’t want to provide city for some reason, type Minneapolis)</span>
     <div class="columns mt-1">
       <div class="column">
         <div class="field">
           <div class="control">
-            <input class="input" name="cityName" [(ngModel)]="homeschool.cityName" placeholder="city name" required>
+            <app-auto-complete-search (emitData)="emittedNameByCitySearch($event)"></app-auto-complete-search>
           </div>
         </div>
       </div>
@@ -49,34 +49,54 @@
       </div>
     </div>
     <app-child [homeschool]="homeschool"></app-child>
-    <h5 class="subtitle is-6 mt-4">Currently hosting or willing to host or lead:</h5>
+    <div class="mb-4">
+      <h5 class="subtitle is-6 mt-4">I'm interested in:</h5>
+      <label class="checkbox">
+        <input type="checkbox" name="interestedInCMCoop" [(ngModel)]="homeschool.interestCoop">
+        CM Coop
+      </label>
+      <label class="checkbox ml-5">
+        <input type="checkbox" name="interestedInBookStudy" [(ngModel)]="homeschool.interestCMBookStudy">
+        Book Study
+      </label>
+      <label class="checkbox ml-5">
+        <input type="checkbox" name="interestedInNatureWalks" [(ngModel)]="homeschool.interestNatureWalks">
+        Nature walks
+      </label>
+      <label class="checkbox ml-5">
+        <input type="checkbox" name="interestedInFriends" [(ngModel)]="homeschool.interestFriends">
+        CM Friends
+      </label>
+    </div>
+
+    <h5 class="subtitle is-6 mt-5">I currently host / lead:   <span class="is-italic">(Type the name of your group)</span></h5>
     <div class="field">
       <div class="control">
-        <input class="input" name="interestCMBookStudy" [(ngModel)]="homeschool.interestCMBookStudy"
+        <input class="input" name="leadingCMBookStudy" [(ngModel)]="homeschool.leadingCMBookStudy"
           placeholder="CM Book study" />
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" name="interestNatureWalks" [(ngModel)]="homeschool.interestNatureWalks"
+        <input class="input" name="leadingNatureWalks" [(ngModel)]="homeschool.leadingNatureWalks"
           placeholder="Nature walks" />
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" name="interestCoop" [(ngModel)]="homeschool.interestCoop" placeholder="Co-op" />
+        <input class="input" name="leadingCoop" [(ngModel)]="homeschool.leadingCoop" placeholder="Co-op" />
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" name="interestMentoring" [(ngModel)]="homeschool.interestMentoring"
+        <input class="input" name="leadingMentoring" [(ngModel)]="homeschool.leadingMentoring"
           placeholder="CM or homeschool-specific business" />
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" name="interestFriendship" [(ngModel)]="homeschool.interestFriendship"
-          placeholder="Friendship" />
+        <input class="input" name="leadingOther" [(ngModel)]="homeschool.leadingOther"
+          placeholder="Other" />
       </div>
     </div>
   </div>

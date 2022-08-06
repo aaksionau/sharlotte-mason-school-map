@@ -18,11 +18,16 @@ namespace SharlotteMason.Dtos
         public string CityName { get; set; }
         [Required]
         public string State { get; set; }
-        public string InterestCMBookStudy { get; set; }
-        public string InterestNatureWalks { get; set; }
-        public string InterestCoop { get; set; }
-        public string InterestMentoring { get; set; }
-        public string InterestFriendship { get; set; }
+        public bool InterestCMBookStudy { get; set; }
+        public bool InterestNatureWalks { get; set; }
+        public bool InterestCoop { get; set; }
+        public bool InterestFriends { get; set; }
+        public string LeadingOther { get; set; }
+        public string LeadingCoop { get; set; }
+        public string LeadingCMBookStudy { get; set; }
+        public string LeadingNatureWalks { get; set; }
+        public string LeadingMentoring { get; set; }
+        public List<string> LeadingGroups { get; set; }
         public List<ChildDto> Children { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }

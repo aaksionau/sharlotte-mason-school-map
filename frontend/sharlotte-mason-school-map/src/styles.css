@@ -13,13 +13,20 @@ body{
     align-self: center;
 }
 .results-area{
-    height:850px;
+    height:743px;
     overflow: hidden;
     overflow-y: scroll;
 }
 .add-school-form{
     max-width: 600px;
 }
-.navbar{
+.homeschool-header{
     border-bottom: 1px solid darkgrey;
+    background-color: #264c73;
+}
+.search .checkbox {
+    font-size:0.8rem;
+}
+.ng-autocomplete{
+    width: 430px!important;
 }

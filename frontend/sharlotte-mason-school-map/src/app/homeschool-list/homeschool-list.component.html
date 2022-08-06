@@ -6,37 +6,59 @@
       </map-marker>
     </google-map>
   </div>
-  <div class="column">
-    <div class="field has-addons">
+  <div class="column search">
+    <div class="field">
       <div class="control is-expanded">
-        <input class="input" type="text" placeholder="City" [(ngModel)]="cityName" />
-      </div>
-      <div class="control">
-        <a class="button is-info" (click)="getHomeSchools(cityName)">
-          Search
-        </a>
+        <app-auto-complete-search 
+        (emitData)="emittedNameByCitySearch($event)"
+        componentCity="{{cityName}}"></app-auto-complete-search>
       </div>
       <p class="control">
-        <a class="button is-white" (click)="getHomeSchools('')">
-          Cancel
-        </a>
       </p>
     </div>
+    <div>
+      <h5 class="is-small mt-1 mb-1">I'm interested in:</h5>
+      <label class="checkbox">
+        <input type="checkbox" name="interestedInCMCoop" [(ngModel)]="filterOptions.interestCoop">
+        CM Coop
+      </label>
+      <label class="checkbox ml-3 ">
+        <input type="checkbox" name="interestedInBookStudy" [(ngModel)]="filterOptions.interestCMBookStudy">
+        Book Study
+      </label>
+      <label class="checkbox ml-3">
+        <input type="checkbox" name="interestedInNatureWalks" [(ngModel)]="filterOptions.interestNatureWalks">
+        Nature walks
+      </label>
+      <label class="checkbox ml-3">
+        <input type="checkbox" name="interestedInFriends" [(ngModel)]="filterOptions.interestFriends">
+        CM Friends
+      </label>
+    </div>
+    <div class="mt-2 mb-3"> 
+      <a class="button is-small is-info" (click)="getHomeSchools(cityName)">Search</a>
+      <a class="button is-white is-small" (click)="getHomeSchools('reset')">
+        Reset
+      </a>
+    </div>
     <div class="results-area">
-      <article *ngFor="let homeSchool of homeSchools" class="message">
+      <article *ngFor="let homeSchool of homeSchools" class="message mb-1">
         <div class="message-body">
           <p class="subtitle mb-2 has-text-grey-darker is-6 has-text-weight-bold">{{homeSchool.familyName}} home school
           </p>
-          <p class="content mb-0 is-small">Located in {{homeSchool.cityName}}, {{homeSchool.state}}</p>
-          <p class="content mb-0 is-small" *ngIf="homeSchool.children.length > 0">
+          <p class="content mb-1 is-small">Located in {{homeSchool.cityName}}, {{homeSchool.state}}</p>
+          <p class="content is-small mb-1" *ngIf="homeSchool.children.length > 0">
             Children:
             <span>{{homeSchool.childrenString}}</span>
           </p>
-          <p class="content is-small mb-1" *ngIf="homeSchool.interests.length > 0">Interested in / leading:
-            {{homeSchool.interestedTopics}} </p>
-            <button class="btn is-small" (click)="sendEmail(homeSchool.id)">Send a message</button>
+          <p class="content is-small mb-1" *ngIf="homeSchool.leadingGroups.length > 0">
+            Leading/Hosting: {{homeSchool.leadingGroupsText}} </p>
+
+          <p class="content is-small mb-1" *ngIf="homeSchool.interests !== ''">Interested In: {{homeSchool.interests}}</p>
+          <button class="btn is-small mt-1" (click)="sendEmail(homeSchool.id)">Send a message</button>
         </div>
       </article>
+      <div *ngIf="homeSchools.length == 0" class="is-size-6 pr-2">There are no schools at this city known to us. If you have a homeschool, please add it! Thank you!</div>
     </div>
   </div>
 </div>

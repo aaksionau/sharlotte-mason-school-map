@@ -1,8 +1,8 @@
 <div class="">
-  <nav class="navbar pt-2 pb-2" role="navigation" aria-label="main navigation">
+  <nav class="navbar pt-2 pb-2 homeschool-header" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <h1 class="subtitle is-4 header ml-3 has-text-grey-dark mt-4 pl-5">MN Charlotta Mason Home Schools Map</h1>
+        <h1 class="subtitle is-4 header has-text-white mt-4 pl-3">Twin Cities Charlotte Mason Home School Families Map</h1>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
@@ -10,14 +10,17 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-
-      <div id="navbarBasicExample" class="navbar-menu ml-5 pl-5">
+      <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/" routerLinkActive="active" class="navbar-item has-text-white ml-4">Home</a>
         </div>
-      </div>
-      <div class="navbar-end is-align-items-center pr-5">
-        <a routerLink="/homeschool" routerLinkActive="active" class="navbar-item button is-success">Add HomeSchool</a>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a routerLink="/homeschool" routerLinkActive="active" class="button is-primary">Add Family</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>

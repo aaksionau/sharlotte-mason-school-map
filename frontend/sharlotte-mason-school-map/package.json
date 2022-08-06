@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "angular-messages": "^1.8.3",
+    "angular-ng-autocomplete": "^2.0.12",
     "bulma": "^0.9.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

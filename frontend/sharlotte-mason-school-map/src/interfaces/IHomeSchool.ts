@@ -8,13 +8,18 @@ export interface IHomeSchool {
     email: string;
     state: string;
     children: IChild[];
-    interestedTopics: string;
+    leadingGroupsText: string;
     added: Date;
     longitude: number;
     latitude: number,
-    interestCMBookStudy: string,
-    interestCoop: string,
-    interestNatureWalks: string,
-    interestMentoring: string,
-    interestFriendship: string
+    leadingCMBookStudy: string,
+    leadingCoop: string,
+    leadingNatureWalks: string,
+    leadingMentoring: string,
+    leadingOther: string,
+
+    interestCMBookStudy: boolean,
+    interestCoop: boolean,
+    interestNatureWalks: boolean,
+    interestFriends: boolean
 }

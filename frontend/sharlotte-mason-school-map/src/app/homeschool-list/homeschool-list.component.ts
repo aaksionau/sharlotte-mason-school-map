@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { FilterOptions } from 'src/helpers/filterOptions';
 import { HomeSchool } from 'src/models/homeSchool';
 import { Marker } from 'src/models/marker';
 import { MarkerGroup } from 'src/models/markerGroup';
@@ -17,6 +18,7 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
   groupedSchools: any;
   homeSchoolId: string = '';
   cityName: string = '';
+  filterOptions: FilterOptions = new FilterOptions();
   zoom = 10;
   center: google.maps.LatLngLiteral | any;
   options: google.maps.MapOptions = {
@@ -32,6 +34,9 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
     this.getLocation();
     this.getHomeSchools(this.cityName);
   }
+  emittedNameByCitySearch(city: string) {
+    this.cityName = city;
+  }
   sendEmail(homeSchoolId: string): void { 
     this.homeSchoolId = homeSchoolId;
     this.showModal = true;
@@ -41,11 +46,30 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
     this.homeSchoolService.getHomeSchools()
       .subscribe(schools => {
         let mappedSchools = schools.map(s => new HomeSchool().mapSchool(s));
-        if (!city) {
-          this.homeSchools = mappedSchools;
-        } else {
-          this.homeSchools = mappedSchools.filter(s => s.cityName.toLowerCase() === city.toLowerCase());
+
+
+        if (city == 'reset') { 
+          this.filterOptions.reset();
+          this.cityName = '';
         }
+
+        if (city && city != 'reset')
+          this.homeSchools = mappedSchools.filter(s => s.cityName.toLowerCase() === city.toLowerCase());
+        else
+          this.homeSchools = mappedSchools;
+        
+          if (this.filterOptions.interestCMBookStudy)
+            this.homeSchools = this.homeSchools.filter(s => s.interestCMBookStudy);
+          
+          if (this.filterOptions.interestCoop)
+            this.homeSchools = this.homeSchools.filter(s => s.interestCoop);
+          
+          if (this.filterOptions.interestFriends)
+            this.homeSchools = this.homeSchools.filter(s => s.interestFriends);
+          
+          if (this.filterOptions.interestNatureWalks)
+            this.homeSchools = this.homeSchools.filter(s => s.interestNatureWalks);
+        
         this.updateMap();
       });
   }

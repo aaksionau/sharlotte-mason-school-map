@@ -1,0 +1,20 @@
+<div class="ng-autocomplete">
+    <ng-autocomplete 
+      [data]="cities"
+      [searchKeyword]="keyword"
+      placeholder="Select city"
+      (selected)='selectEvent($event)'
+      (inputChanged)='onChangeSearch($event)'
+      (inputFocused)='onFocused($event)'
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate">                                 
+    </ng-autocomplete>
+    
+    <ng-template #itemTemplate let-item>
+    <a [innerHTML]="item"></a>
+    </ng-template>
+    
+    <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+    </ng-template>
+    </div>
