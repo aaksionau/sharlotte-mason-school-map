@@ -26,8 +26,8 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
     zoomControl: true,
     scrollwheel: false,
     disableDoubleClickZoom: true,
-    maxZoom: 15,
-    minZoom: 8,
+    maxZoom: 21,
+    minZoom: 3,
   }
   showModal: boolean = false;
   ngOnInit(): void {
@@ -104,8 +104,8 @@ export class HomeschoolListComponent implements OnInit, OnChanges {
       })
     } else {
       this.center = {
-        lat: 44.977753,
-        lng: -93.2650108,
+        lat: 44.8229993,
+        lng: 92.9076105,
       }
     }
   }

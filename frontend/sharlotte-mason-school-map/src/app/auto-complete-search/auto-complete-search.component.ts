@@ -21,7 +21,7 @@ export class AutoCompleteSearchComponent implements OnInit {
     this.emitData.emit(item);
   }
   ngOnChanges(changes: SimpleChanges) {
-    this.auto.close();
+    //this.auto.close();
   }
 
   onChangeSearch(val: string) {
