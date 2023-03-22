@@ -1,0 +1,18 @@
+<div class="field has-addons">
+    <p class="control">
+        <button class="button" (click)="switchView('map')" [ngClass]="{'is-info':isMapView}">
+          <span class="icon is-small">
+            <i class="fas fa-map"></i>
+          </span>
+          <span>Map</span>
+        </button>
+      </p>
+    <p class="control">
+      <button class="button" (click)="switchView('list')" [ngClass]="{'is-info':!isMapView}">
+        <span class="icon is-small">
+          <i class="fas fa-list"></i>
+        </span>
+        <span>List</span>
+      </button>
+    </p>
+  </div>

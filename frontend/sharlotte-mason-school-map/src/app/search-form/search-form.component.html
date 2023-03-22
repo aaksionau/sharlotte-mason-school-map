@@ -1,0 +1,37 @@
+<div class="columns">
+    <div class="column is-three-quarters ml-3">
+        <div class="field">
+            <div class="control is-expanded">
+                <app-auto-complete-search (emitData)="emittedNameByCitySearch($event)"
+                    componentCity="{{filterOptions.cityName}}"></app-auto-complete-search>
+            </div>
+            <p class="control">
+            </p>
+        </div>
+        <div>
+            <span class="is-small mt-1 mb-1 mr-2">I'm interested in:</span>
+            <label class="checkbox">
+                <input type="checkbox" name="interestedInCMCoop" [(ngModel)]="filterOptions.interestCoop">
+                CM Coop
+            </label>
+            <label class="checkbox ml-3 ">
+                <input type="checkbox" name="interestedInBookStudy" [(ngModel)]="filterOptions.interestCMBookStudy">
+                Book Study
+            </label>
+            <label class="checkbox ml-3">
+                <input type="checkbox" name="interestedInNatureWalks" [(ngModel)]="filterOptions.interestNatureWalks">
+                Nature walks
+            </label>
+            <label class="checkbox ml-3">
+                <input type="checkbox" name="interestedInFriends" [(ngModel)]="filterOptions.interestFriends">
+                CM Friends
+            </label>
+        </div>
+    </div>
+    <div class="column">
+        <a class="button is-info" (click)="getHomeSchools(filterOptions.cityName)">Search</a>
+        <a class="button is-white" (click)="resetForm()">
+            Reset
+        </a>
+    </div>
+</div>

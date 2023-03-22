@@ -1,1 +1,10 @@
-<app-homeschool-list></app-homeschool-list>
+<div class="columns">
+    <div class="column is-10">
+        <app-search-form (onSearch)="updateResults($event)"></app-search-form>
+    </div>
+    <div class="column">
+        <app-view-switcher (onSwitch)="switchView($event)"></app-view-switcher>
+    </div>
+</div>
+<app-homeschool-map [homeSchools]="homeSchools" [isMapView]="isMapView"></app-homeschool-map>
+<app-homeschool-list [homeSchools]="homeSchools" [isListView]="!isMapView"></app-homeschool-list>

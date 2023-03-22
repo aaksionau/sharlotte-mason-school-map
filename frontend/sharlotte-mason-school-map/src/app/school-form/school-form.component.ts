@@ -22,19 +22,22 @@ export class SchoolFormComponent implements OnInit {
   homeschool: IHomeSchool = new HomeSchool();
   ngOnInit(): void {
     this.cleanForm();
-    this.getHomeSchool();
   }
   emittedNameByCitySearch(city: string) {
     this.homeschool.cityName = city;
   }
   getHomeSchool(): void { 
-    const id = String(this.route.snapshot.paramMap.get('id'));
-    this.homeschoolService.getHomeSchoolById(id)
+    this.homeschoolService.getHomeSchoolById(this.homeschool.id)
       .subscribe(school => { 
         this.homeschool = new HomeSchool().mapSchool(school);
+        if(school.id == ''){
+          this.errors.push("Family wasn't found");
+        }
       })
   }
-
+  clearErrors(): void{
+    this.errors = [];
+  }
   saveSchool(): void {
     this.errors = [];
     if (!this.homeschool.familyName) {

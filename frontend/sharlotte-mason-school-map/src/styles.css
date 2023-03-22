@@ -17,9 +17,6 @@ body{
     overflow: hidden;
     overflow-y: scroll;
 }
-.add-school-form{
-    max-width: 600px;
-}
 .homeschool-header{
     border-bottom: 1px solid darkgrey;
     background-color: #264c73;
@@ -28,5 +25,5 @@ body{
     font-size:0.8rem;
 }
 .ng-autocomplete{
-    width: 430px!important;
+    width: 100% !important;
 }

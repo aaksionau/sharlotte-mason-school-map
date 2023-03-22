@@ -1,0 +1,7 @@
+<div class="column map" *ngIf="isMapView">
+    <google-map width="100%" height="700px" [zoom]="zoom" [center]="center" [options]="options">
+      <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
+        [icon]="marker.icon" [options]="marker.options">
+      </map-marker>
+    </google-map>
+  </div>

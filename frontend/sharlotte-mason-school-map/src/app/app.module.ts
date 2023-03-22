@@ -15,6 +15,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MessageComponent } from './message/message.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { AutoCompleteSearchComponent } from './auto-complete-search/auto-complete-search.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { HomeschoolMapComponent } from './homeschool-map/homeschool-map.component';
+import { ViewSwitcherComponent } from './view-switcher/view-switcher.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,7 +33,10 @@ const appRoutes: Routes = [
     ChildComponent,
     HomeComponent,
     MessageComponent,
-    AutoCompleteSearchComponent
+    AutoCompleteSearchComponent,
+    SearchFormComponent,
+    HomeschoolMapComponent,
+    ViewSwitcherComponent
   ],
   imports: [
     BrowserModule,

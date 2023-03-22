@@ -1,23 +1,9 @@
-<div class="">
-  <nav class="navbar pt-2 pb-2 homeschool-header" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a routerLink="/" routerLinkActive="active" class="navbar-item has-text-white ml-4">Home</a>
-        </div>
-        <div class="navbar-start">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a routerLink="/homeschool" routerLinkActive="active" class="button is-primary">Add Family</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <div class="container mt-3">
-    <router-outlet></router-outlet>
+<div class="container">
+  <div class="tabs is-toggle is-toggle-rounded ml-2">
+    <ul>
+      <li routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/home">Home</a></li>
+      <li routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/homeschool">Add/Update Family Information</a></li>
+    </ul>
   </div>
-  <footer class="section">
-  </footer>
+  <router-outlet></router-outlet>
 </div>
