@@ -39,4 +39,4 @@ jobs:
           app-name: 'charlottemasonmap'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ env.AZUREAPPSERVICE_PUBLISHPROFILE_55650E79FC244B6F9A487238CFBDE5B6 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_55650E79FC244B6F9A487238CFBDE5B6 }}
