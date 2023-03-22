@@ -15,6 +15,7 @@ export class AutoCompleteSearchComponent implements OnInit {
   @ViewChild('auto') auto: any;
   @Output() emitData = new EventEmitter<string>();
   @Input() componentCity: string;
+  @ViewChild('autocompleteField') autocompleteField: any;
   ngOnInit(): void {
   }
   selectEvent(item: string) {
@@ -23,8 +24,11 @@ export class AutoCompleteSearchComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if(this.auto)
       this.auto.close();
-  }
 
+    this.componentCity = changes['componentCity'].currentValue;
+    if(this.autocompleteField)
+      this.autocompleteField.initialValue = this.componentCity;
+  }
   onChangeSearch(val: string) {
     // fetch remote data from here
     // And reassign the 'data' which is binded to 'data' property.

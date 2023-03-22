@@ -1,7 +1,8 @@
 <div class="ng-autocomplete">
     <ng-autocomplete 
+      #autocompleteField
       [data]="cities"
-      [searchKeyword]="keyword"
+      [searchKeyword]="componentCity"
       placeholder="Select city"
       (selected)='selectEvent($event)'
       (inputChanged)='onChangeSearch($event)'

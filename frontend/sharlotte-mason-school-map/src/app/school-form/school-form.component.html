@@ -48,7 +48,9 @@
         <div class="column">
           <div class="field">
             <div class="control">
-              <app-auto-complete-search (emitData)="emittedNameByCitySearch($event)"></app-auto-complete-search>
+              <app-auto-complete-search 
+              (emitData)="emittedNameByCitySearch($event)" 
+              [componentCity]="homeschool.cityName"></app-auto-complete-search>
             </div>
           </div>
         </div>

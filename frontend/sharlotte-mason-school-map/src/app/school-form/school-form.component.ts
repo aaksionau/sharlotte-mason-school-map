@@ -55,7 +55,7 @@ export class SchoolFormComponent implements OnInit {
     this.homeschoolService.saveHomeSchool(this.homeschool)
       .subscribe(result => console.warn(result));
     
-      this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
   cleanForm(): void { 
     this.errors = [];
