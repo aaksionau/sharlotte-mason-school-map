@@ -53,11 +53,11 @@ export class HomeschoolService {
   private log(message: string) {
     this.messageService.add(`HomeschoolService: ${message}`);
   }
-
-  homeSchoolsUrl = 'https://charlottemasonmap.azurewebsites.net/api/GetHomeSchools';
-  addHomeSchoolUrl = 'https://charlottemasonmap.azurewebsites.net/api/SaveHomeSchool';
-  getHomeSchoolByIdUrl = 'https://charlottemasonmap.azurewebsites.net/api/GetHomeSchoolById';
-  sendMessageUrl = 'https://charlottemasonmap.azurewebsites.net/api/SendMessageToOwner';
+  baseUrl = 'https://mncharlottemason.azurewebsites.net/api';
+  homeSchoolsUrl = `${this.baseUrl}/GetHomeSchools`;
+  addHomeSchoolUrl = `${this.baseUrl}/SaveHomeSchool`;
+  getHomeSchoolByIdUrl = `${this.baseUrl}/GetHomeSchoolById`;
+  sendMessageUrl = `${this.baseUrl}/SendMessageToOwner`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
