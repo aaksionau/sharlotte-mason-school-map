@@ -42,6 +42,11 @@
           <input class="input" name="email" type="email" required [(ngModel)]="homeschool.email" placeholder="Email">
         </div>
       </div>
+      <div class="field">
+        <div class="control">
+          <input class="input" name="phoneNumber" type="tel" [(ngModel)]="homeschool.phoneNumber" placeholder="Phone number (optional)">
+        </div>
+      </div>
       <h5 class="subtitle is-size-5 mt-4 mb-2 form-header">Location:</h5>
       <span class="is-size-6">(If you don’t want to provide city for some reason, type Minneapolis)</span>
       <div class="columns mt-1">
@@ -113,6 +118,14 @@
       <div class="field">
         <div class="control">
           <input class="input" name="leadingOther" [(ngModel)]="homeschool.leadingOther" placeholder="Other" />
+        </div>
+      </div>
+
+      <h5 class="subtitle is-size-5 mb-0 form-header">About my group: </h5>
+      <p class="mb-2"></p>
+      <div class="field">
+        <div class="control">
+          <textarea class="input" name="aboutGroup" [(ngModel)]="homeschool.aboutGroup" placeholder="Time, location, etc." rows="15"></textarea>
         </div>
       </div>
     </div>

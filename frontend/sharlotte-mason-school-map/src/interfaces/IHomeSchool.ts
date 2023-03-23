@@ -6,6 +6,8 @@ export interface IHomeSchool {
     familyName: string;
     cityName: string;
     email: string;
+    phoneNumber: string;
+    aboutGroup: string;
     state: string;
     children: IChild[];
     leadingGroupsText: string;

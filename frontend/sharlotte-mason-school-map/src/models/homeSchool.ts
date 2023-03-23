@@ -11,6 +11,8 @@ export class HomeSchool implements IHomeSchool {
     public cityName: string = '';
     public state: string = 'MN';
     public email: string = '';
+    public phoneNumber: string = '';
+    public aboutGroup: string = '';
     public children: Child[] = [];
     public leadingGroupsText: string = '';
     public longitude: number = 0;
@@ -44,6 +46,8 @@ export class HomeSchool implements IHomeSchool {
         homeschool.cityName = val.cityName;
         homeschool.state = val.state;
         homeschool.email = val.email;
+        homeschool.phoneNumber = val.phoneNumber;
+        homeschool.aboutGroup = val.aboutGroup;
         homeschool.longitude = val.longitude;
         homeschool.latitude = val.latitude;
         homeschool.added = val.added;

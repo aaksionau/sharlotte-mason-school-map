@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { IHomeSchool } from 'src/interfaces/IHomeSchool';
 import { HomeschoolService } from 'src/services/homeschool.service';
-import { EventEmitter } from '@angular/core';
-import { v4 as uuidv4 } from 'uuid';
 import { HomeSchool } from 'src/models/homeSchool';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -67,6 +65,8 @@ export class SchoolFormComponent implements OnInit {
       cityName: '',
       state: 'MN',
       email: '',
+      phoneNumber: '',
+      aboutGroup: '',
       children: [],
       leadingGroupsText: '',
       longitude: 0,

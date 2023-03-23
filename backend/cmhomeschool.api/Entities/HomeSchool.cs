@@ -20,6 +20,8 @@ namespace SharlotteMason.Entities
             CityName = dto.CityName;
             State = dto.State;
             Email = dto.Email;
+            PhoneNumber = dto.PhoneNumber;
+            AboutGroup = dto.AboutGroup;
 
             InterestCMBookStudy = dto.InterestCMBookStudy;
             InterestFriends = dto.InterestFriends;
@@ -38,6 +40,8 @@ namespace SharlotteMason.Entities
         public string Email { get; set; }
         public string CityName { get; set; }
         public string State { get; set; }
+        public string PhoneNumber { get; set; }
+        public string AboutGroup { get; set; }
         public bool InterestCMBookStudy { get; set; }
         public bool InterestNatureWalks { get; set; }
         public bool InterestCoop { get; set; }

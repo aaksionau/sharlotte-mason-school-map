@@ -11,13 +11,14 @@
         </p>
         <p class="content is-small mb-1" *ngIf="homeSchool.leadingGroups.length > 0">
           Leading/Hosting: {{homeSchool.leadingGroupsText}} </p>
+        <p class="content is-small mb-1" *ngIf="homeSchool.leadingGroups.length > 0">
+          About group: {{homeSchool.aboutGroup}} </p>
 
         <p class="content is-small mb-1" *ngIf="homeSchool.interests !== ''">Interested In: {{homeSchool.interests}}</p>
         <button class="btn is-small mt-1" (click)="sendEmail(homeSchool.id)">Send a message</button>
       </div>
     </article>
-    <div *ngIf="homeSchools.length == 0" class="is-size-6 pr-2">There are no schools found for your request. If you
-      have a homeschool and didn't add it here, please do it! Thank you!</div>
+    <div *ngIf="homeSchools.length == 0" class="is-size-6 pr-2">There are no groups that match your request.</div>
   </div>
   <app-message [homeSchoolId]="homeSchoolId" [showModal]="showModal" (getModalStatusEvent)="changeStatus()"></app-message>
 </div>
