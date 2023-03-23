@@ -87,6 +87,8 @@ namespace SharlotteMason.Entities
                 Children = this.GetChildren(),
                 Latitude = this.Latitude,
                 Longitude = this.Longitude,
+                AboutGroup = this.AboutGroup,
+                PhoneNumber = this.PhoneNumber,
                 InterestCMBookStudy = this.InterestCMBookStudy,
                 InterestCoop = this.InterestCoop,
                 InterestNatureWalks = this.InterestNatureWalks,
