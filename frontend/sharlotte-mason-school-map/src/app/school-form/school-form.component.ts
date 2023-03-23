@@ -27,11 +27,12 @@ export class SchoolFormComponent implements OnInit {
     this.homeschool.cityName = city;
   }
   getHomeSchool(): void { 
-    this.homeschoolService.getHomeSchoolById(this.homeschool.id)
+    const id = this.homeschool.id.replace(/\s/g, '');
+    this.homeschoolService.getHomeSchoolById(id)
       .subscribe(school => { 
         this.homeschool = new HomeSchool().mapSchool(school);
         if(school.id == ''){
-          this.errors.push("Family wasn't found");
+          this.errors.push("Family wasn't found.");
         }
       })
   }
@@ -41,13 +42,13 @@ export class SchoolFormComponent implements OnInit {
   saveSchool(): void {
     this.errors = [];
     if (!this.homeschool.familyName) {
-      this.errors.push("Family name is required");
+      this.errors.push("Family name is required.");
     }
     if (!this.homeschool.cityName) {
-      this.errors.push("City name is required");
+      this.errors.push("City name is required.");
     }
     if (!this.homeschool.email || !this.validateEmail(this.homeschool.email)) { 
-      this.errors.push('Email address is required and need to be correct');
+      this.errors.push('Email address is required and should be valid.');
     }
 
     if (this.errors.length > 0) return;
