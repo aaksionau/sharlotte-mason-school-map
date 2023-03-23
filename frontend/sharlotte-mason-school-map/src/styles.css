@@ -27,3 +27,7 @@ body{
 .ng-autocomplete{
     width: 100% !important;
 }
+.form-header{
+    background: #e7f5ef;
+    padding: 2px 5px;
+}
