@@ -34,7 +34,7 @@
         </p>
         <p class="control">
           <input class="input" id="yearOfBirth" type="number" name="yearOfBirth" ng-maxlength="4"
-            [(ngModel)]="child.yearOfBirth" placeholder="year"/>
+            [(ngModel)]="child.yearOfBirth" placeholder="year" style="width:75px"/>
         </p>
         <p class="control">
           <span class="select">
@@ -46,7 +46,7 @@
         </p>
       </div>
     </div>
-    <div class="column is-1">
+    <div class="column is-1 ml-6">
       <button class="delete is-danger mt-1 ml-5" (click)="removeChild(child.id)"></button>
     </div>
   </div>
