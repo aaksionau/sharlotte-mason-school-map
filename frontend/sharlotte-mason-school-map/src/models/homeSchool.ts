@@ -32,8 +32,8 @@ export class HomeSchool implements IHomeSchool {
     public interests: string = '';
 
     public leadingGroups: Array<string> = [];
-    public addChild(yearOfBirth: number, gender: number): void {
-        this.children.push(new Child(yearOfBirth, gender));
+    public addChild(yearOfBirth: number, monthOfBirth: number, gender: number): void {
+        this.children.push(new Child(yearOfBirth, monthOfBirth, gender));
     }
     public childrenString: string = '';
 
@@ -59,9 +59,9 @@ export class HomeSchool implements IHomeSchool {
             homeschool.leadingGroupsText += `${i}, `;
         });
         homeschool.leadingGroupsText = homeschool.leadingGroupsText.slice(0, -2);
-        homeschool.children = val.children.map(s=>new Child(s.yearOfBirth, s.gender));
+        homeschool.children = val.children.map(s=>new Child(s.yearOfBirth, s.monthOfBirth, s.gender));
         if (homeschool.children.length != 0) {
-            homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.gender));
+            homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.monthOfBirth, ch.gender));
         
             homeschool.children.forEach(ch => {
                 homeschool.childrenString += `${ch.genderString} (${ch.age}), `

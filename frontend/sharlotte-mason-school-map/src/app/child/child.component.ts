@@ -17,7 +17,7 @@ export class ChildComponent implements OnInit {
 
 
   addChild(): void { 
-    this.homeschool?.children.push({ yearOfBirth: 2010, gender: 0, id: uuidv4()} as IChild);
+    this.homeschool?.children.push({ yearOfBirth: 2010, monthOfBirth: 1, gender: 0, id: uuidv4()} as IChild);
   }
 
   removeChild(id: string): void { 
