@@ -8,11 +8,11 @@
     </div>
   </div>
 
-  <div class="columns is-flex is-align-items-center" *ngFor="let child of homeschool?.children">
+  <div class="columns is-flex is-align-items-center" *ngFor="let child of homeschool?.children; let i = index">
     <div class="column is-2 pr-0">
-      <label for="yearOfBirth" class="content">Date Of Birth</label>
+      <label for="yearOfBirth" class="content">Child {{i + 1}}: </label>
     </div>
-    <div class="column is-4">
+    <div class="column is-6">
       <div class="field has-addons">
         <p class="control">
           <span class="select">
@@ -36,17 +36,14 @@
           <input class="input" id="yearOfBirth" type="number" name="yearOfBirth" ng-maxlength="4"
             [(ngModel)]="child.yearOfBirth" placeholder="year"/>
         </p>
-      </div>
-    </div>
-    <div class="column is-1">
-      <label class="content">Gender</label>
-    </div>
-    <div class="column is-2">
-      <div class="select">
-        <select [(ngModel)]="child.gender" id="gender" name="gender">
-          <option value="0">boy</option>
-          <option value="1">girl</option>
-        </select>
+        <p class="control">
+          <span class="select">
+            <select [(ngModel)]="child.gender" id="gender" name="gender">
+              <option value="0">boy</option>
+              <option value="1">girl</option>
+            </select>
+          </span>
+        </p>
       </div>
     </div>
     <div class="column is-1">
