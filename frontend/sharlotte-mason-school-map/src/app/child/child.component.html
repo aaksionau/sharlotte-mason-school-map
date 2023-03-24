@@ -12,42 +12,43 @@
     <div class="column is-2 pr-0">
       <label for="yearOfBirth" class="content">Date Of Birth</label>
     </div>
-    <div class="column is-3">
+    <div class="column is-4">
+      <div class="field has-addons">
+        <p class="control">
+          <span class="select">
+            <select [(ngModel)]="child.monthOfBirth" id="monthOfBirth" name="monthOfBirth">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+          </span>
+        </p>
+        <p class="control">
+          <input class="input" id="yearOfBirth" type="number" name="yearOfBirth" ng-maxlength="4"
+            [(ngModel)]="child.yearOfBirth" placeholder="year"/>
+        </p>
+      </div>
+    </div>
+    <div class="column is-1">
+      <label class="content">Gender</label>
+    </div>
+    <div class="column is-2">
       <div class="select">
-        <select [(ngModel)]="child.monthOfBirth" id="monthOfBirth" name="monthOfBirth">
-          <option value="0">January</option>
-          <option value="1">February</option>
-          <option value="2">March</option>
-          <option value="3">April</option>
-          <option value="4">May</option>
-          <option value="5">June</option>
-          <option value="6">July</option>
-          <option value="7">August</option>
-          <option value="8">September</option>
-          <option value="9">October</option>
-          <option value="10">November</option>
-          <option value="11">December</option>
+        <select [(ngModel)]="child.gender" id="gender" name="gender">
+          <option value="0">boy</option>
+          <option value="1">girl</option>
         </select>
       </div>
     </div>
-    <div class="column is-2">
-      <div class="field">
-        <div class="control">
-          <input class="input" id="yearOfBirth" type="number" name="yearOfBirth" ng-maxlength="4" [(ngModel)]="child.yearOfBirth" placeholder="year">
-        </div>
-      </div>
-    </div>
-      <div class="column is-1">
-        <label class="content">Gender</label>
-      </div>
-      <div class="column is-2">
-        <div class="select">
-          <select [(ngModel)]="child.gender" id="gender" name="gender">
-            <option value="0">boy</option>
-            <option value="1">girl</option>
-          </select>
-        </div>
-      </div>
     <div class="column is-1">
       <button class="delete is-danger mt-1 ml-5" (click)="removeChild(child.id)"></button>
     </div>
