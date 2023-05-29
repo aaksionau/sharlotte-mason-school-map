@@ -1,0 +1,31 @@
+name: Opalstack Deployment
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+          working-directory: frontend/sharlotte-mason-school-map
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - name: Install npm dependencies
+      run: npm install
+    - name: Run build task
+      run: npm run build --if-present
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ env.REMOTE_HOST }}
+          REMOTE_USER: ${{ env.REMOTE_USER }}
+          TARGET: ${{ env.REMOTE_TARGET }}
+          EXCLUDE: "/dist/, /node_modules/"
