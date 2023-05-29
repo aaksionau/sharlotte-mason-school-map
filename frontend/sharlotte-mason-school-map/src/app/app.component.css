@@ -1,0 +1,24 @@
+.background-header {
+    background-image: url('./../assets/images/background_header.jpg');
+    height: 30vh;
+    background-position: 0px 27%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.header-text {
+    color: black;
+    font-family: 'Dancing Script', cursive;
+    margin-top: 20px;
+    font-size: 3.5rem;
+}
+
+.welcome {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+}
+
+footer {
+    height: 5vh;
+}

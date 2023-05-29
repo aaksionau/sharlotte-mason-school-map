@@ -1,9 +1,36 @@
-<div class="container">
-  <div class="tabs is-toggle is-toggle-rounded ml-2">
+<div class="background-header">
+  <h1 class="header-text">Charlotte Mason in Minnesota</h1>
+</div>
+<div class="container is-max-widescreen">
+  <section class="mt-4">
+    <article>
+      <h3 class="welcome">Welcome!</h3>
+      <p>
+        We hope this site will cultivate more community among Minnesota families and educators who value Charlotte
+        Mason’s educational philosophy. Please add your homeschool, co-op, nature group, microschool, book club, or
+        other
+        CM-related group to the Minnesota map by registering below!
+      </p>
+      <br />
+      <p>
+        <strong>A note about privacy:</strong> Your personal contact information will not be publicly visible. Your
+        name, kids’ ages, and city of residence
+        will be
+        visible if you choose to add that information to this map. If someone wishes to contact you, they will send a
+        blind
+        message through this site. If you choose to reply to that message, you may decide to share your email address
+        or
+        additional contact information with the inquirer.
+      </p>
+    </article>
+  </section>
+  <div class="tabs is-toggle is-toggle-rounded mt-3">
     <ul>
-      <li routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/home">Home</a></li>
-      <li routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/homeschool">Add/Update Family Information</a></li>
+      <li routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/home">Map</a></li>
+      <li routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><a
+          routerLink="/homeschool">Add/Update Family Information</a></li>
     </ul>
   </div>
   <router-outlet></router-outlet>
 </div>
+<footer class="mt-3"></footer>
