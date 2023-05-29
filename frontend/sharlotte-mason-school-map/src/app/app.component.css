@@ -22,3 +22,9 @@
 footer {
     height: 5vh;
 }
+
+@media (max-width:400px) {
+    .header-text {
+        font-size: 1.7rem;
+    }
+}
