@@ -35,7 +35,8 @@ namespace SharlotteMason.Services
                 var address = new AddressData()
                 {
                     City = fullCity.First().Trim(),
-                    State = fullCity.Skip(1).First().Trim()
+                    State = fullCity.Skip(1).First().Trim(),
+                    Country = fullCity.Skip(2).First().Trim()
                 };
 
                 var latlong = gls.GetLatLongFromAddress(address);
