@@ -30,12 +30,12 @@ namespace SharlotteMason.Services
             try
             {
                 var gls = new GoogleLocationService(apikey: this.configuration.GetValue<string>("GoogleAPIKey"));
-                var state = homeSchool.CityName.Replace("USA", "").Split(" ").ToList().Last();
-                var city = homeSchool.CityName.Replace($"{state}, USA", "");
+                var fullCity = homeSchool.CityName.Split(",").ToList();
+
                 var address = new AddressData()
                 {
-                    City = city.Trim(),
-                    State = state.Trim()
+                    City = fullCity.First().Trim(),
+                    State = fullCity.Skip(1).First().Trim()
                 };
 
                 var latlong = gls.GetLatLongFromAddress(address);
