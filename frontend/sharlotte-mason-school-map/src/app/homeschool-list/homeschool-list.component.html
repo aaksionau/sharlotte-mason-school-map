@@ -4,7 +4,7 @@
       <div class="message-body">
         <p class="subtitle mb-2 has-text-grey-darker is-6 has-text-weight-bold">{{homeSchool.familyName}} home school
         </p>
-        <p class="content mb-1 is-small">Located in {{homeSchool.cityName}}, {{homeSchool.state}}</p>
+        <p class="content mb-1 is-small">Located in {{homeSchool.cityName}}</p>
         <p class="content is-small mb-1" *ngIf="homeSchool.children.length > 0">
           Children:
           <span>{{homeSchool.childrenString}}</span>
@@ -20,5 +20,6 @@
     </article>
     <div *ngIf="homeSchools.length == 0" class="is-size-6 pr-2">There are no groups that match your request.</div>
   </div>
-  <app-message [homeSchoolId]="homeSchoolId" [showModal]="showModal" (getModalStatusEvent)="changeStatus()"></app-message>
+  <app-message [homeSchoolId]="homeSchoolId" [showModal]="showModal"
+    (getModalStatusEvent)="changeStatus()"></app-message>
 </div>
