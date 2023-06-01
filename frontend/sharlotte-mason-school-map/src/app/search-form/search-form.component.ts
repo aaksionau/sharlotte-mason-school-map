@@ -46,7 +46,7 @@ export class SearchFormComponent implements OnInit {
         let mappedSchools = schools.map(s => new HomeSchool().mapSchool(s));
         this.homeSchools = mappedSchools;
         if (city !== '')
-          this.homeSchools = mappedSchools.filter(s => s.cityName.toLowerCase() === city.toLowerCase());
+          this.homeSchools = mappedSchools.filter(s => s.cityName.toLowerCase().includes(city.toLowerCase()));
 
         if (this.filterOptions.interestCMBookStudy)
           this.homeSchools = this.homeSchools.filter(s => s.interestCMBookStudy);
