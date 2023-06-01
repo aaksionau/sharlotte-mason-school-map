@@ -1,40 +1,48 @@
-import { Component, OnInit, EventEmitter, Output, Input, SimpleChanges, ViewChild } from '@angular/core';
-import citiesJson from './usaCities.json';
+import { Component, ViewChild, EventEmitter, Output, OnInit, AfterViewInit, Input, SimpleChanges } from '@angular/core';
+
 @Component({
   selector: 'app-auto-complete-search',
-  templateUrl: './auto-complete-search.component.html',
-  styleUrls: ['./auto-complete-search.component.css']
+  template: `
+      <input class="input"
+        type="text"
+        [(ngModel)]="autocompleteInput"
+        #addresstext
+        >
+    `,
 })
-export class AutoCompleteSearchComponent implements OnInit {
+export class AutocompleteComponent implements OnInit, AfterViewInit {
+  @Output() setAddress: EventEmitter<any> = new EventEmitter();
+  @ViewChild('addresstext') addresstext: any;
+  @Input() componentCity: string = '';
+
+  autocompleteInput: string = '';
+  queryWait: boolean = false;
 
   constructor() {
-    this.componentCity = '';
   }
-  keyword = 'City';
-  cities: Array<string> = citiesJson.filter(s => s.state == 'Minnesota').map(item => item.city);
-  @ViewChild('auto') auto: any;
-  @Output() emitData = new EventEmitter<string>();
-  @Input() componentCity: string;
-  @ViewChild('autocompleteField') autocompleteField: any;
-  ngOnInit(): void {
+
+  ngOnInit() {
   }
-  selectEvent(item: string) {
-    this.emitData.emit(item);
+
+  ngAfterViewInit() {
+    this.getPlaceAutocomplete();
   }
   ngOnChanges(changes: SimpleChanges) {
-    if(this.auto)
-      this.auto.close();
+    this.autocompleteInput = changes['componentCity'].currentValue;
+  }
+  private getPlaceAutocomplete() {
+    const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
+      {
+        componentRestrictions: { country: 'US' },
+        types: ['locality']
+      });
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+      const place = autocomplete.getPlace();
+      this.invokeEvent(place);
+    });
+  }
 
-    this.componentCity = changes['componentCity'].currentValue;
-    if(this.autocompleteField)
-      this.autocompleteField.initialValue = this.componentCity;
-  }
-  onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
-  }
-  
-  onFocused(e:void){
-    // do something when input is focused
+  invokeEvent(place: Object) {
+    this.setAddress.emit(place);
   }
 }

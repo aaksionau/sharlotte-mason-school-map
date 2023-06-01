@@ -12,11 +12,11 @@
   </article>
   <div class="columns">
     <div class="column">
-      <p class="pb-2">If you want to update your family's info, please enter the code from email you received when you initially added your family.</p>
+      <p class="pb-2">If you want to update your family's info, please enter the code from email you received when you
+        initially added your family.</p>
       <div class="field has-addons">
         <div class="control">
-          <input class="input" name="id" id="id" required [(ngModel)]="homeschool.id"
-            placeholder="Family Code">
+          <input class="input" name="id" id="id" required [(ngModel)]="homeschool.id" placeholder="Family Code">
         </div>
         <button class="button is-success" (click)="getHomeSchool()">Search</button>
       </div>
@@ -44,26 +44,20 @@
       </div>
       <div class="field">
         <div class="control">
-          <input class="input" name="phoneNumber" type="tel" [(ngModel)]="homeschool.phoneNumber" placeholder="Phone number (optional)">
+          <input class="input" name="phoneNumber" type="tel" [(ngModel)]="homeschool.phoneNumber"
+            placeholder="Phone number (optional)">
         </div>
       </div>
       <h5 class="subtitle is-size-5 mt-4 mb-2 form-header">Location:</h5>
-      <span class="is-size-6">(If you don’t want to provide city for some reason, type Minneapolis)</span>
+      <span class="is-size-6">If for some reason you don’t want to list your exact city, type a larger city near to you
+        (eg, St. Paul instead of Maplewood).</span>
       <div class="columns mt-1">
         <div class="column">
           <div class="field">
             <div class="control">
-              <app-auto-complete-search 
-              (emitData)="emittedNameByCitySearch($event)" 
-              [componentCity]="homeschool.cityName"></app-auto-complete-search>
+              <app-auto-complete-search (setAddress)="getCity($event)"
+                [componentCity]="homeschool.cityName"></app-auto-complete-search>
             </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="select">
-            <select [(ngModel)]="homeschool.state" name="state">
-              <option value="MN">MN</option>
-            </select>
           </div>
         </div>
       </div>
@@ -90,7 +84,8 @@
         </label>
       </div>
 
-      <h5 class="subtitle is-size-5 mb-0 form-header">I currently host / lead: <span class="is-italic">(Type the name of your group)</span></h5>
+      <h5 class="subtitle is-size-5 mb-0 form-header">I currently host / lead: <span class="is-italic">(Type the name of
+          your group)</span></h5>
       <p class="mt-5"></p>
       <div class="field">
         <div class="control">
@@ -125,7 +120,8 @@
       <p class="mb-2"></p>
       <div class="field">
         <div class="control">
-          <textarea class="input" name="aboutGroup" [(ngModel)]="homeschool.aboutGroup" placeholder="Time, location, etc." rows="15"></textarea>
+          <textarea class="input" name="aboutGroup" [(ngModel)]="homeschool.aboutGroup"
+            placeholder="Time, location, etc." rows="15"></textarea>
         </div>
       </div>
     </div>

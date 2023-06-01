@@ -20,13 +20,31 @@ export class SearchFormComponent implements OnInit {
   emittedNameByCitySearch(city: string) {
     this.filterOptions.cityName = city;
   }
+  getCity(place: any) {
+    const COMPONENT_TEMPLATE = { locality: 'long_name' };
+    const city = this.getAddrComponent(place, COMPONENT_TEMPLATE);
+    this.filterOptions.cityName = city;
+    return city;
+  }
+  getAddrComponent(place: any, componentTemplate: any) {
+    let result;
+
+    for (let i = 0; i < place.address_components.length; i++) {
+      const addressType = place.address_components[i].types[0];
+      if (componentTemplate[addressType]) {
+        result = place.address_components[i][componentTemplate[addressType]];
+        return result;
+      }
+    }
+    return;
+  }
+
   getHomeSchools(city: string | any): void {
     this.homeSchoolService.getHomeSchools()
       .subscribe(schools => {
 
         let mappedSchools = schools.map(s => new HomeSchool().mapSchool(s));
         this.homeSchools = mappedSchools;
-
         if (city !== '')
           this.homeSchools = mappedSchools.filter(s => s.cityName.toLowerCase() === city.toLowerCase());
 
@@ -44,7 +62,7 @@ export class SearchFormComponent implements OnInit {
         this.onSearch.emit(this.homeSchools);
       });
   }
-  resetForm(){
+  resetForm() {
     this.filterOptions.reset();
     this.getHomeSchools('');
   }

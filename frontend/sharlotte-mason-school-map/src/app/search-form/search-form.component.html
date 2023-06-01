@@ -2,8 +2,7 @@
     <div class="column is-three-quarters ml-3">
         <div class="field">
             <div class="control is-expanded">
-                <app-auto-complete-search (emitData)="emittedNameByCitySearch($event)"
-                    componentCity="{{filterOptions.cityName}}"></app-auto-complete-search>
+                <app-auto-complete-search (setAddress)="getCity($event)"></app-auto-complete-search>
             </div>
             <p class="control">
             </p>

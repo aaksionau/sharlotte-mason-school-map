@@ -24,17 +24,22 @@ export class SchoolFormComponent implements OnInit {
   emittedNameByCitySearch(city: string) {
     this.homeschool.cityName = city;
   }
-  getHomeSchool(): void { 
+  getCity(place: any) {
+    const city = place['formatted_address'];
+    this.homeschool.cityName = city;
+    return city;
+  }
+  getHomeSchool(): void {
     const id = this.homeschool.id.replace(/\s/g, '');
     this.homeschoolService.getHomeSchoolById(id)
-      .subscribe(school => { 
+      .subscribe(school => {
         this.homeschool = new HomeSchool().mapSchool(school);
-        if(school.id == ''){
+        if (school.id == '') {
           this.errors.push("Family wasn't found.");
         }
       })
   }
-  clearErrors(): void{
+  clearErrors(): void {
     this.errors = [];
   }
   saveSchool(): void {
@@ -45,7 +50,7 @@ export class SchoolFormComponent implements OnInit {
     if (!this.homeschool.cityName) {
       this.errors.push("City name is required.");
     }
-    if (!this.homeschool.email || !this.validateEmail(this.homeschool.email)) { 
+    if (!this.homeschool.email || !this.validateEmail(this.homeschool.email)) {
       this.errors.push('Email address is required and should be valid.');
     }
 
@@ -53,10 +58,10 @@ export class SchoolFormComponent implements OnInit {
 
     this.homeschoolService.saveHomeSchool(this.homeschool)
       .subscribe(result => console.warn(result));
-    
+
     this.router.navigate(['/home']);
   }
-  cleanForm(): void { 
+  cleanForm(): void {
     this.errors = [];
     this.homeschool = {
       id: '',
@@ -85,7 +90,7 @@ export class SchoolFormComponent implements OnInit {
     }
   }
 
-  validateEmail(email:string): boolean {
+  validateEmail(email: string): boolean {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
