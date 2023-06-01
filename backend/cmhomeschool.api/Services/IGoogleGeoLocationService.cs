@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Net;
 using GoogleMaps.LocationServices;
 using Microsoft.Extensions.Configuration;
@@ -29,9 +30,12 @@ namespace SharlotteMason.Services
             try
             {
                 var gls = new GoogleLocationService(apikey: this.configuration.GetValue<string>("GoogleAPIKey"));
+                var state = homeSchool.CityName.Replace("USA", "").Split(" ").ToList().Last();
+                var city = homeSchool.CityName.Replace($"{state}, USA", "");
                 var address = new AddressData()
                 {
-                    City = homeSchool.CityName,
+                    City = city.Trim(),
+                    State = state.Trim()
                 };
 
                 var latlong = gls.GetLatLongFromAddress(address);
