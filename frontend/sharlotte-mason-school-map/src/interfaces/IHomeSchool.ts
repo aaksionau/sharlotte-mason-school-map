@@ -1,6 +1,6 @@
 import { IChild } from './IChild'
 
-export interface IHomeSchool { 
+export interface IHomeSchool {
     id: string;
     firstName: string;
     familyName: string;
@@ -8,6 +8,7 @@ export interface IHomeSchool {
     email: string;
     phoneNumber: string;
     aboutGroup: string;
+    aboutGroupUrl: string;
     state: string;
     children: IChild[];
     leadingGroupsText: string;

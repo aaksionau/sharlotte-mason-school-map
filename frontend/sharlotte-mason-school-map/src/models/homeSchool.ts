@@ -13,6 +13,7 @@ export class HomeSchool implements IHomeSchool {
     public email: string = '';
     public phoneNumber: string = '';
     public aboutGroup: string = '';
+    public aboutGroupUrl: string = "";
     public children: Child[] = [];
     public leadingGroupsText: string = '';
     public longitude: number = 0;
@@ -37,8 +38,7 @@ export class HomeSchool implements IHomeSchool {
     }
     public childrenString: string = '';
 
-    public mapSchool(val: IHomeSchool): HomeSchool
-    {
+    public mapSchool(val: IHomeSchool): HomeSchool {
         let homeschool = new HomeSchool();
         homeschool.firstName = val.firstName;
         homeschool.id = val.id;
@@ -48,6 +48,7 @@ export class HomeSchool implements IHomeSchool {
         homeschool.email = val.email;
         homeschool.phoneNumber = val.phoneNumber;
         homeschool.aboutGroup = val.aboutGroup;
+        homeschool.aboutGroupUrl = val.aboutGroupUrl;
         homeschool.longitude = val.longitude;
         homeschool.latitude = val.latitude;
         homeschool.added = val.added;
@@ -59,14 +60,14 @@ export class HomeSchool implements IHomeSchool {
             homeschool.leadingGroupsText += `${i}, `;
         });
         homeschool.leadingGroupsText = homeschool.leadingGroupsText.slice(0, -2);
-        homeschool.children = val.children.map(s=>new Child(s.yearOfBirth, s.monthOfBirth, s.gender));
+        homeschool.children = val.children.map(s => new Child(s.yearOfBirth, s.monthOfBirth, s.gender));
         if (homeschool.children.length != 0) {
             homeschool.children = val.children.map(ch => new Child(ch.yearOfBirth, ch.monthOfBirth, ch.gender));
-        
+
             homeschool.children.forEach(ch => {
                 homeschool.childrenString += `${ch.genderString} (${ch.age}), `
             });
-            homeschool.childrenString = homeschool.childrenString.slice(0, -2);   
+            homeschool.childrenString = homeschool.childrenString.slice(0, -2);
         }
         homeschool.leadingCMBookStudy = val.leadingCMBookStudy;
         homeschool.leadingCoop = val.leadingCoop;
@@ -78,10 +79,10 @@ export class HomeSchool implements IHomeSchool {
         homeschool.interestCoop = val.interestCoop;
         homeschool.interestFriends = val.interestFriends;
         homeschool.interestNatureWalks = val.interestNatureWalks;
-        
-        if(homeschool.interestCMBookStudy)
+
+        if (homeschool.interestCMBookStudy)
             homeschool.interests += 'Book Study';
-        
+
         if (homeschool.interestCoop)
             homeschool.interests += ', CM Coop';
 
@@ -90,9 +91,9 @@ export class HomeSchool implements IHomeSchool {
 
         if (homeschool.interestNatureWalks)
             homeschool.interests += ', Nature Walks';
-        
-        homeschool.interests = homeschool.interests.replace(new RegExp("^,"),"");
-        
+
+        homeschool.interests = homeschool.interests.replace(new RegExp("^,"), "");
+
         return homeschool;
     }
 }

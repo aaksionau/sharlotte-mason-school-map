@@ -18,6 +18,7 @@ namespace SharlotteMason.Dtos
         public string CityName { get; set; }
 
         public string AboutGroup { get; set; }
+        public string AboutGroupUrl { get; set; }
         public string PhoneNumber { get; set; }
         [Required]
         public string State { get; set; }

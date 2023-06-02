@@ -54,6 +54,10 @@ export class SchoolFormComponent implements OnInit {
       this.errors.push('Email address is required and should be valid.');
     }
 
+    if (this.homeschool.aboutGroupUrl && !this.isValidUrl(this.homeschool.aboutGroupUrl)) {
+      this.errors.push("Website Url should be a valid url.");
+    }
+
     if (this.errors.length > 0) return;
 
     this.homeschoolService.saveHomeSchool(this.homeschool)
@@ -72,6 +76,7 @@ export class SchoolFormComponent implements OnInit {
       email: '',
       phoneNumber: '',
       aboutGroup: '',
+      aboutGroupUrl: '',
       children: [],
       leadingGroupsText: '',
       longitude: 0,
@@ -94,6 +99,14 @@ export class SchoolFormComponent implements OnInit {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
+  isValidUrl(url: string): boolean {
+    try {
+      new URL(url);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
   errors: string[] = []
 
 }

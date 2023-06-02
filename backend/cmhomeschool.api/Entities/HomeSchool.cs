@@ -22,6 +22,7 @@ namespace SharlotteMason.Entities
             Email = dto.Email;
             PhoneNumber = dto.PhoneNumber;
             AboutGroup = dto.AboutGroup;
+            AboutGroupUrl = dto.AboutGroupUrl;
 
             InterestCMBookStudy = dto.InterestCMBookStudy;
             InterestFriends = dto.InterestFriends;
@@ -42,6 +43,7 @@ namespace SharlotteMason.Entities
         public string State { get; set; }
         public string PhoneNumber { get; set; }
         public string AboutGroup { get; set; }
+        public string AboutGroupUrl { get; set; }
         public bool InterestCMBookStudy { get; set; }
         public bool InterestNatureWalks { get; set; }
         public bool InterestCoop { get; set; }
@@ -58,7 +60,7 @@ namespace SharlotteMason.Entities
 
         public List<ChildDto> GetChildren()
         {
-            if(!string.IsNullOrEmpty(ChildrenJSON))
+            if (!string.IsNullOrEmpty(ChildrenJSON))
                 return JsonConvert.DeserializeObject<List<ChildDto>>(ChildrenJSON);
             return new List<ChildDto>();
         }
@@ -88,6 +90,7 @@ namespace SharlotteMason.Entities
                 Latitude = this.Latitude,
                 Longitude = this.Longitude,
                 AboutGroup = this.AboutGroup,
+                AboutGroupUrl = this.AboutGroupUrl,
                 PhoneNumber = this.PhoneNumber,
                 InterestCMBookStudy = this.InterestCMBookStudy,
                 InterestCoop = this.InterestCoop,
@@ -98,7 +101,7 @@ namespace SharlotteMason.Entities
                 LeadingCoop = this.LeadingCMCoop,
                 LeadingMentoring = this.LeadingMentoring,
                 LeadingNatureWalks = this.LeadingNatureWalks
-        };
+            };
         }
     }
 }
