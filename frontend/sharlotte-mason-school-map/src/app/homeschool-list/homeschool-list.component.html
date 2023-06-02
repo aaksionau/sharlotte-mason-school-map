@@ -13,7 +13,7 @@
           Leading/Hosting: {{homeSchool.leadingGroupsText}} </p>
         <p class="content is-small mb-1" *ngIf="homeSchool.leadingGroups.length > 0">
           About group: {{homeSchool.aboutGroup}} </p>
-        <p class="content is-small mb-1" *ngIf="homeSchool.aboutGroupUrl !== ''">
+        <p class="content is-small mb-1" *ngIf="homeSchool.showGroupUrl(homeSchool)">
           Website: <a href="{{homeSchool.aboutGroupUrl}}" target="_blank">Link</a>
         </p>
         <p class="content is-small mb-1" *ngIf="homeSchool.interests !== ''">Interested In: {{homeSchool.interests}}</p>

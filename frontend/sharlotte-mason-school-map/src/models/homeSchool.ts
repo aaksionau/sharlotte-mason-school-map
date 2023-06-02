@@ -37,7 +37,9 @@ export class HomeSchool implements IHomeSchool {
         this.children.push(new Child(yearOfBirth, monthOfBirth, gender));
     }
     public childrenString: string = '';
-
+    public showGroupUrl(homeschool: HomeSchool): boolean {
+        return homeschool.aboutGroupUrl != null && homeschool.aboutGroupUrl.length > 0;
+    }
     public mapSchool(val: IHomeSchool): HomeSchool {
         let homeschool = new HomeSchool();
         homeschool.firstName = val.firstName;
@@ -49,6 +51,7 @@ export class HomeSchool implements IHomeSchool {
         homeschool.phoneNumber = val.phoneNumber;
         homeschool.aboutGroup = val.aboutGroup;
         homeschool.aboutGroupUrl = val.aboutGroupUrl;
+
         homeschool.longitude = val.longitude;
         homeschool.latitude = val.latitude;
         homeschool.added = val.added;
