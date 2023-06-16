@@ -19,17 +19,17 @@ export class MessageComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.message.homeSchoolId = changes['homeSchoolId'].currentValue;
+    this.message.homeSchoolId = changes['homeSchoolId']?.currentValue;
   }
-  send(): void { 
+  send(): void {
     this.errors = [];
-    if (!this.message.email || !this.validateEmail(this.message.email)) { 
+    if (!this.message.email || !this.validateEmail(this.message.email)) {
       this.errors.push('Your email is required and needs to be valid');
     }
-    if (!this.message.name) { 
+    if (!this.message.name) {
       this.errors.push('Your name is required');
     }
-    if (!this.message.body) { 
+    if (!this.message.body) {
       this.errors.push('Message is required');
     }
 
@@ -39,13 +39,13 @@ export class MessageComponent implements OnInit {
     )
     this.closeForm();
   }
-  closeForm(): void { 
+  closeForm(): void {
     this.message = new Message('');
     this.showModal = false;
     this.getModalStatusEvent.emit(this.showModal);
   }
 
-  validateEmail(email:string): boolean {
+  validateEmail(email: string): boolean {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   };

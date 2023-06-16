@@ -1,6 +1,6 @@
 import { IChild } from "src/interfaces/IChild";
 
-export class Child implements IChild{ 
+export class Child implements IChild {
     constructor(
         public yearOfBirth: number,
         public monthOfBirth: number,
@@ -12,7 +12,7 @@ export class Child implements IChild{
 
     public getAge(): number {
         var today = new Date();
-        var birthDate = new Date(`${this.yearOfBirth}/${this.monthOfBirth - 1}/1`);
+        var birthDate = new Date(`${this.yearOfBirth}/${this.monthOfBirth + 1}/1`);
         var age = today.getFullYear() - birthDate.getFullYear();
         var m = today.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {

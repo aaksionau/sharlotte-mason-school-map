@@ -17,6 +17,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { HomeschoolMapComponent } from './homeschool-map/homeschool-map.component';
 import { ViewSwitcherComponent } from './view-switcher/view-switcher.component';
 import { AutocompleteComponent } from './auto-complete-search/auto-complete-search.component';
+import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     AutocompleteLibModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,

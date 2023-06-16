@@ -1,10 +1,9 @@
 <div class="columns">
-    <div class="column is-9">
+    <div class="column">
         <app-search-form (onSearch)="updateResults($event)"></app-search-form>
     </div>
-    <div class="column">
-        <app-view-switcher (onSwitch)="switchView($event)"></app-view-switcher>
-    </div>
 </div>
+<hr />
+<app-view-switcher (onSwitch)="switchView($event)" class="toggle-btn is-pulled-right"></app-view-switcher>
 <app-homeschool-map [homeSchools]="homeSchools" [isMapView]="isMapView"></app-homeschool-map>
 <app-homeschool-list [homeSchools]="homeSchools" [isListView]="!isMapView"></app-homeschool-list>

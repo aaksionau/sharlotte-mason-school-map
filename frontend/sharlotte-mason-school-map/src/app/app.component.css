@@ -4,7 +4,7 @@
     background-position: 0px 27%;
     display: flex;
     justify-content: center;
-
+    border-bottom: 5px solid #31481e;
 }
 
 .header-text {
@@ -23,7 +23,7 @@ footer {
     height: 5vh;
 }
 
-@media (max-width:400px) {
+@media (max-width:600px) {
     .header-text {
         font-size: 1.7rem;
     }

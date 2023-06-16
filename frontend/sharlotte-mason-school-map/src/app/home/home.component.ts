@@ -14,14 +14,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  toggleForm(): void { 
+  toggleForm(): void {
     this.formIsVisible = !this.formIsVisible;
   }
 
-  updateResults(homeSchools: HomeSchool[]){
+  updateResults(homeSchools: HomeSchool[]) {
     this.homeSchools = homeSchools;
   }
-  switchView(isMapView: boolean){
+  switchView(isMapView: boolean) {
     this.isMapView = isMapView;
   }
 }

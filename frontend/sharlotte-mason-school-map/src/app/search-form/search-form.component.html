@@ -1,8 +1,9 @@
-<div class="columns">
-    <div class="column is-three-quarters ml-3">
+<div class="columns pl-2 pr-2">
+    <div class="column is-three-quarters">
         <div class="field">
             <div class="control is-expanded">
-                <app-auto-complete-search (setAddress)="getCity($event)"></app-auto-complete-search>
+                <app-auto-complete-search (setAddress)="getCity($event)"
+                    componentCity={{filterOptions.cityName}}></app-auto-complete-search>
             </div>
             <p class="control">
             </p>
@@ -28,9 +29,16 @@
         </div>
     </div>
     <div class="column">
-        <a class="button is-info" (click)="getHomeSchools(filterOptions.cityName)">Search</a>
-        <a class="button is-white" (click)="resetForm()">
-            Reset
-        </a>
+        <div class="field has-addons">
+            <p class="control">
+                <a class="button is-primary" (click)="getHomeSchools(filterOptions.cityName)">Search</a>
+            </p>
+            <p class="control">
+                <a class="button is-outlined" (click)="resetForm()">
+                    Reset
+                </a>
+            </p>
+        </div>
+
     </div>
 </div>
