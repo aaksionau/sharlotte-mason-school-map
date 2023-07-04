@@ -15,18 +15,8 @@ export class HomeschoolListComponent implements OnInit {
 
   @Input() homeSchools: HomeSchool[];
   @Input() isListView: boolean;
-  homeSchoolId: string = '';
+  @Input() forMap: boolean = false;
   showModal: boolean = false;
-
   ngOnInit(): void {
-  }
-
-  sendEmail(homeSchoolId: string): void {
-    this.homeSchoolId = homeSchoolId;
-    this.showModal = true;
-  }
-
-  changeStatus(): void {
-    this.showModal = !this.showModal;
   }
 }

@@ -1,42 +1,35 @@
-<div class="modal" [ngClass]="showModal ? 'is-active': ''">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Message details</p>
-      <button class="delete" aria-label="close" (click)="closeForm()"></button>
-    </header>
-    <section class="modal-card-body">
-      <article class="message is-danger is-small" *ngIf="errors.length > 0">
-        <div class="message-header">
-          <p class="mt-2">Ouch! Please fix following errors: </p>
-          <button class="delete" aria-label="delete"></button>
-        </div>
-        <div class="message-body">
-          <ul class="mb-0 mt-0">
-            <li *ngFor="let error of errors" class="content mb-0 mt-0">{{error}}</li>
-          </ul>
-        </div>
-      </article>
-      <div class="field">
-        <div class="control">
-          <input class="input" name="from" [(ngModel)]="message.email" placeholder="Your email">
-        </div>
+<div [ngClass]="showModal ? 'show': 'hide'">
+  <section>
+    <article class="message is-danger is-small" *ngIf="errors.length > 0">
+      <div class="message-header">
+        <p class="mt-2">Ouch! Please fix following errors: </p>
+        <button class="delete" aria-label="delete"></button>
       </div>
-      <div class="field">
-        <div class="control">
-          <input class="input" name="name" [(ngModel)]="message.name" placeholder="Your name">
-        </div>
+      <div class="message-body">
+        <ul class="mb-0 mt-0">
+          <li *ngFor="let error of errors" class="content mb-0 mt-0">{{error}}</li>
+        </ul>
       </div>
-      <div class="field">
-        <div class="control">
-          <textarea class="input" name="message" [(ngModel)]="message.body" placeholder="Your message" rows="6"
-            style="height:auto;"></textarea>
-        </div>
+    </article>
+    <div class="field">
+      <div class="control">
+        <input class="input is-small" name="from" [(ngModel)]="message.email" placeholder="Your email">
       </div>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success" (click)="send()">Send</button>
-      <button class="button" (click)="closeForm()">Cancel</button>
-    </footer>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input is-small" name="name" [(ngModel)]="message.name" placeholder="Your name">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <textarea class="input is-small" name="message" [(ngModel)]="message.body" placeholder="Your message" rows="6"
+          style="height:auto;"></textarea>
+      </div>
+    </div>
+  </section>
+  <div class="mt-2">
+    <button class="button is-success is-small mr-2" (click)="send()">Send</button>
+    <button class="button is-small" (click)="closeForm()">Cancel</button>
   </div>
 </div>

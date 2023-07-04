@@ -18,6 +18,7 @@ import { HomeschoolMapComponent } from './homeschool-map/homeschool-map.componen
 import { ViewSwitcherComponent } from './view-switcher/view-switcher.component';
 import { AutocompleteComponent } from './auto-complete-search/auto-complete-search.component';
 import { CommonModule } from '@angular/common';
+import { HomeschoolDetailComponent } from './homeschool-detail/homeschool-detail.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     SearchFormComponent,
     HomeschoolMapComponent,
     ViewSwitcherComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    HomeschoolDetailComponent
   ],
   imports: [
     BrowserModule,

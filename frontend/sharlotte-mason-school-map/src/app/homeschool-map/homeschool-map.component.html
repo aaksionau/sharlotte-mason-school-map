@@ -1,7 +1,17 @@
 <div class="column map" *ngIf="isMapView">
-    <google-map width="100%" height="700px" [zoom]="zoom" [center]="center" [options]="options">
-      <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
-        [icon]="marker.icon" [options]="marker.options">
-      </map-marker>
-    </google-map>
-  </div>
+  <google-map width="100%" height="700px" [zoom]="zoom" [center]="center" [options]="options">
+    <map-marker #groupMarker="mapMarker" *ngFor="let marker of groupMarkers" [position]="marker.position"
+      [label]="marker.label" [icon]="marker.icon" [options]="marker.options"
+      (mapClick)="openInfo(groupMarker, marker.homeSchools)">
+      <map-info-window>
+        <app-homeschool-list [homeSchools]="getSchools()" [isListView]="true" [forMap]="true"></app-homeschool-list>
+      </map-info-window>
+    </map-marker>
+    <map-marker #marker="mapMarker" *ngFor="let place of markers" [position]="place.position"
+      (mapClick)="openInfo(marker, [place.school])" [options]="place.options">
+      <map-info-window>
+        <app-homeschool-list [homeSchools]="getSchools()" [isListView]="true" [forMap]="true"></app-homeschool-list>
+      </map-info-window>
+    </map-marker>
+  </google-map>
+</div>

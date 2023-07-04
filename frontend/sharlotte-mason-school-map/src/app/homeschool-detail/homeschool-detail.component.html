@@ -1,0 +1,25 @@
+<div class="message-body">
+    <p class="subtitle mb-2 has-text-grey-darker is-6 has-text-weight-bold">{{homeSchool.familyName}} home school
+    </p>
+    <p class="content mb-1 is-small"><strong>Located in </strong>{{homeSchool.cityName}}</p>
+    <p class="content is-small mb-1" *ngIf="homeSchool.children.length > 0">
+        <strong>Children: </strong>
+        <span>{{homeSchool.childrenString}}</span>
+    </p>
+    <p class="content is-small mb-1" *ngIf="homeSchool.leadingGroups.length > 0">
+        <strong>Leading/Hosting:</strong> {{homeSchool.leadingGroupsText}}
+    </p>
+    <p class="content is-small mb-1" *ngIf="homeSchool.leadingGroups.length > 0">
+        <strong>About group: </strong> {{homeSchool.aboutGroup}}
+    </p>
+    <p class="content is-small mb-1" *ngIf="homeSchool.showGroupUrl(homeSchool)">
+        <strong>Website: </strong> <a href="{{homeSchool.aboutGroupUrl}}" target="_blank">Link</a>
+    </p>
+    <p class="content is-small mb-1" *ngIf="homeSchool.interests !== ''"><strong>Interested In:</strong>
+        {{homeSchool.interests}}</p>
+    <button class="button is-info is-small mt-3" (click)="sendEmail(homeSchool.id)"
+        [ngClass]="showModal? 'hide': 'show'">Send a
+        message</button>
+    <app-message [homeSchoolId]="homeSchoolId" [showModal]="showModal"
+        (getModalStatusEvent)="changeStatus()"></app-message>
+</div>

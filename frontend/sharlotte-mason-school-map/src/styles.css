@@ -1,33 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bulma/css/bulma.min.css";
 
-body{
+body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
 }
-.map{
+
+.map {
     height: 100%;
 }
-.header{
+
+.header {
     font-style: italic;
     align-self: center;
 }
-.results-area{
-    height:743px;
+
+.results-area {
+    height: 743px;
     overflow: hidden;
     overflow-y: scroll;
 }
-.homeschool-header{
+
+.homeschool-header {
     border-bottom: 1px solid darkgrey;
     background-color: #264c73;
 }
+
 .search .checkbox {
-    font-size:0.8rem;
+    font-size: 0.8rem;
 }
-.ng-autocomplete{
+
+.ng-autocomplete {
     width: 100% !important;
 }
-.form-header{
+
+.form-header {
     background: #e7f5ef;
     padding: 2px 5px;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.gm-ui-hover-effect {
+    margin: 10px !important;
 }
